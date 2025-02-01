@@ -41,46 +41,49 @@ export default function Login() {
     const message = searchParams.get('message');
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-900 p-4">
-            <div className="max-w-md w-full space-y-8 bg-gray-800 p-8 rounded-xl shadow-2xl">
+        <div className="min-h-screen flex items-center justify-center bg-gov-light p-4">
+            <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-lg border-t-4 border-gov-primary">
                 <div>
-                    <h2 className="text-center text-3xl font-extrabold text-white">
-                        Sign in to your account
+                    <h2 className="text-center text-3xl font-extrabold text-gov-text">
+                        Government Portal Login
                     </h2>
+                    <p className="mt-2 text-center text-sm text-gov-primary">
+                        Access e-Governance Services
+                    </p>
                 </div>
                 {message && (
-                    <div className="bg-blue-500/10 border border-blue-500 text-blue-500 px-4 py-2 rounded">
+                    <div className="bg-gov-accent/10 border border-gov-secondary text-gov-dark px-4 py-2 rounded">
                         {message}
                     </div>
                 )}
                 {error && (
-                    <div className="bg-red-500/10 border border-red-500 text-red-500 px-4 py-2 rounded">
+                    <div className="bg-red-50 border border-gov-error text-gov-error px-4 py-2 rounded">
                         {error}
                     </div>
                 )}
                 <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
                     <div className="space-y-4">
                         <div>
-                            <label htmlFor="email" className="text-white">Email address</label>
+                            <label htmlFor="email" className="text-gov-label font-medium">Email address</label>
                             <input
                                 id="email"
                                 name="email"
                                 type="email"
                                 required
-                                className="appearance-none rounded-lg relative block w-full px-3 py-2 mt-1 border border-gray-700 bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="appearance-none rounded-lg relative block w-full px-3 py-2 mt-1 border border-gov-input-border bg-white text-gov-input-text placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gov-primary focus:border-gov-primary"
                                 placeholder="example@email.com"
                                 value={formData.email}
                                 onChange={(e) => setFormData({...formData, email: e.target.value})}
                             />
                         </div>
                         <div>
-                            <label htmlFor="password" className="text-white">Password</label>
+                            <label htmlFor="password" className="text-gov-label font-medium">Password</label>
                             <input
                                 id="password"
                                 name="password"
                                 type="password"
                                 required
-                                className="appearance-none rounded-lg relative block w-full px-3 py-2 mt-1 border border-gray-700 bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="appearance-none rounded-lg relative block w-full px-3 py-2 mt-1 border border-gov-input-border bg-white text-gov-input-text placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gov-primary focus:border-gov-primary"
                                 placeholder="••••••••"
                                 value={formData.password}
                                 onChange={(e) => setFormData({...formData, password: e.target.value})}
@@ -88,7 +91,7 @@ export default function Login() {
                         </div>
                         <div className="flex items-center justify-between mt-2">
                             <div className="text-sm">
-                                <Link href="/auth/forgot-password" className="text-blue-500 hover:text-blue-400">
+                                <Link href="/auth/forgot-password" className="text-gov-link hover:text-gov-link-hover font-medium">
                                     Forgot your password?
                                 </Link>
                             </div>
@@ -98,15 +101,15 @@ export default function Login() {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-full flex justify-center py-3 px-4 rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full flex justify-center py-3 px-4 rounded-lg text-white bg-gov-primary hover:bg-gov-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gov-secondary disabled:opacity-50 disabled:cursor-not-allowed font-medium"
                     >
-                        {loading ? 'Signing in...' : 'Sign in'}
+                        {loading ? 'Authenticating...' : 'Login to Portal'}
                     </button>
 
-                    <p className="text-center text-gray-400">
+                    <p className="text-center text-gov-text">
                         Don't have an account?{' '}
-                        <Link href="/auth/signup" className="text-blue-500 hover:text-blue-400">
-                            Sign up
+                        <Link href="/auth/signup" className="text-gov-link hover:text-gov-link-hover font-medium">
+                            Register here
                         </Link>
                     </p>
                 </form>

@@ -38,26 +38,26 @@ export default function VerifyEmail() {
     }, [searchParams]);
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-900 p-4">
-            <div className="max-w-md w-full space-y-8 bg-gray-800 p-8 rounded-xl shadow-2xl text-center">
+        <div className="min-h-screen flex items-center justify-center bg-gov-light p-4">
+            <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-lg border-t-4 border-gov-primary">
                 {status === 'verifying' && (
                     <div>
-                        <h2 className="text-2xl font-bold text-white mb-4">
+                        <h2 className="text-2xl font-bold text-gov-text mb-4">
                             Verifying your email...
                         </h2>
-                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto"></div>
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gov-primary mx-auto"></div>
                     </div>
                 )}
 
                 {status === 'success' && (
                     <div>
-                        <h2 className="text-2xl font-bold text-green-500 mb-4">
+                        <h2 className="text-2xl font-bold text-gov-success mb-4">
                             Email Verified!
                         </h2>
-                        <p className="text-white mb-6">{message}</p>
+                        <p className="text-gov-text mb-6">{message}</p>
                         <Link 
                             href="/auth/login"
-                            className="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                            className="inline-block bg-gov-primary text-white px-6 py-2 rounded-lg hover:bg-gov-dark transition-colors font-medium"
                         >
                             Proceed to Login
                         </Link>
