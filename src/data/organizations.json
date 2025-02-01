@@ -1,87 +1,142 @@
 [
-    {
-        "name": "Ministry of Home Affairs",
-        "scope": "central"
-    },
-    {
-        "name": "Ministry of Education",
-        "scope": "central"
-    },
-    {
-        "name": "Department of Health - Maharashtra",
-        "scope": "state",
-        "state": "Maharashtra"
-    },
-    {
-        "name": "Department of Education - Gujarat",
-        "scope": "state",
-        "state": "Gujarat"
-    },
-    {
-        "name": "Ahmedabad Municipal Corporation",
-        "scope": "local",
-        "isRural": false,
-        "place": {
-            "city": "Ahmedabad",
-            "district": "Ahmedabad"
-        }
-    },
-    {
-        "name": "Gandhinagar Gram Panchayat",
-        "scope": "local",
-        "isRural": true,
-        "place": {
-            "district": "Gandhinagar",
-            "taluka": "Gandhinagar",
-            "village": "Gandhinagar"
-        }
-    },
-    {
-        "name": "Mumbai Municipal Corporation",
-        "scope": "local",
-        "isRural": false,
-        "place": {
-            "city": "Mumbai",
-            "district": "Mumbai"
-        }
-    },
-    {
-        "name": "Nashik Zilla Parishad",
-        "scope": "local",
-        "isRural": true,
-        "place": {
-            "district": "Nashik",
-            "taluka": "Nashik",
-            "village": "Nashik Rural"
-        }
-    },
-    {
-        "name": "Surat Municipal Corporation",
-        "scope": "local",
-        "isRural": false,
-        "place": {
-            "city": "Surat",
-            "district": "Surat"
-        }
-    },
-    {
-        "name": "Surat District Panchayat",
-        "scope": "local",
-        "isRural": true,
-        "place": {
-            "district": "Surat",
-            "taluka": "Surat",
-            "village": "Surat Rural"
-        }
-    },
-    {
-        "name": "Olpad Taluka Panchayat",
-        "scope": "local",
-        "isRural": true,
-        "place": {
-            "district": "Surat",
-            "taluka": "Olpad",
-            "village": "Olpad"
-        }
+  {
+    "name": "Ministry of Health and Family Welfare",
+    "scope": "central"
+  },
+  {
+    "name": "Ministry of Education",
+    "scope": "central"
+  },
+  {
+    "name": "Indian Railways",
+    "scope": "central"
+  },
+  {
+    "name": "Tamil Nadu State Electricity Board",
+    "scope": "state",
+    "state": "Tamil Nadu"
+  },
+  {
+    "name": "Maharashtra State Road Transport Corporation",
+    "scope": "state",
+    "state": "Maharashtra"
+  },
+  {
+    "name": "West Bengal Pollution Control Board",
+    "scope": "state",
+    "state": "West Bengal"
+  },
+  {
+    "name": "Karnataka State Tourism Development Corporation",
+    "scope": "state",
+    "state": "Karnataka"
+  },
+  {
+    "name": "Delhi Jal Board",
+    "scope": "state",
+    "state": "Delhi"
+  },
+  {
+    "name": "Lucknow Municipal Corporation",
+    "scope": "local",
+    "isRural": false,
+    "place": {
+      "city": "Lucknow",
+      "district": "Lucknow"
     }
+  },
+  {
+    "name": "Indore Municipal Corporation",
+    "scope": "local",
+    "isRural": false,
+    "place": {
+      "city": "Indore",
+      "district": "Indore"
+    }
+  },
+  {
+    "name": "Pune Municipal Corporation",
+    "scope": "local",
+    "isRural": false,
+    "place": {
+      "city": "Pune",
+      "district": "Pune"
+    }
+  },
+  {
+    "name": "Jaipur Nagar Nigam",
+    "scope": "local",
+    "isRural": false,
+    "place": {
+      "city": "Jaipur",
+      "district": "Jaipur"
+    }
+  },
+  {
+    "name": "Amritsar Gram Panchayat",
+    "scope": "local",
+    "isRural": true,
+    "place": {
+      "district": "Amritsar",
+      "taluka": "Ajnala",
+      "village": "Rajasansi"
+    }
+  },
+  {
+    "name": "Hassan Rural Development Authority",
+    "scope": "local",
+    "isRural": true,
+    "place": {
+      "district": "Hassan",
+      "taluka": "Sakleshpur",
+      "village": "Arehalli"
+    }
+  },
+  {
+    "name": "Mysuru Rural Health Center",
+    "scope": "local",
+    "isRural": true,
+    "place": {
+      "district": "Mysuru",
+      "taluka": "Nanjangud",
+      "village": "Badanavalu"
+    }
+  },
+  {
+    "name": "Patna Urban Development Authority",
+    "scope": "local",
+    "isRural": false,
+    "place": {
+      "city": "Patna",
+      "district": "Patna"
+    }
+  },
+  {
+    "name": "Kerala Water Authority",
+    "scope": "state",
+    "state": "Kerala"
+  },
+  {
+    "name": "Chandigarh Transport Undertaking",
+    "scope": "state",
+    "state": "Chandigarh"
+  },
+  {
+    "name": "Varanasi Nagar Nigam",
+    "scope": "local",
+    "isRural": false,
+    "place": {
+      "city": "Varanasi",
+      "district": "Varanasi"
+    }
+  },
+  {
+    "name": "Bhopal Municipal Corporation",
+    "scope": "local",
+    "isRural": false,
+    "place": {
+      "city": "Bhopal",
+      "district": "Bhopal"
+    }
+  }
 ]

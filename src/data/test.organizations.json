@@ -1,118 +1,200 @@
 [{
   "_id": {
-    "$oid": "679df49c70eb957805993d8f"
+    "$oid": "679e319470eb957805993da9"
   },
-  "name": "Ministry of Home Affairs",
+  "name": "Ministry of Health and Family Welfare",
   "scope": "central"
 },
 {
   "_id": {
-    "$oid": "679df49c70eb957805993d90"
+    "$oid": "679e319470eb957805993daa"
   },
   "name": "Ministry of Education",
   "scope": "central"
 },
 {
   "_id": {
-    "$oid": "679df49c70eb957805993d91"
+    "$oid": "679e319470eb957805993dab"
   },
-  "name": "Department of Health - Maharashtra",
+  "name": "Indian Railways",
+  "scope": "central"
+},
+{
+  "_id": {
+    "$oid": "679e319470eb957805993dac"
+  },
+  "name": "Tamil Nadu State Electricity Board",
+  "scope": "state",
+  "state": "Tamil Nadu"
+},
+{
+  "_id": {
+    "$oid": "679e319470eb957805993dad"
+  },
+  "name": "Maharashtra State Road Transport Corporation",
   "scope": "state",
   "state": "Maharashtra"
 },
 {
   "_id": {
-    "$oid": "679df49c70eb957805993d92"
+    "$oid": "679e319470eb957805993dae"
   },
-  "name": "Department of Education - Gujarat",
+  "name": "West Bengal Pollution Control Board",
   "scope": "state",
-  "state": "Gujarat"
+  "state": "West Bengal"
 },
 {
   "_id": {
-    "$oid": "679df49c70eb957805993d93"
+    "$oid": "679e319470eb957805993daf"
   },
-  "name": "Ahmedabad Municipal Corporation",
+  "name": "Karnataka State Tourism Development Corporation",
+  "scope": "state",
+  "state": "Karnataka"
+},
+{
+  "_id": {
+    "$oid": "679e319470eb957805993db0"
+  },
+  "name": "Delhi Jal Board",
+  "scope": "state",
+  "state": "Delhi"
+},
+{
+  "_id": {
+    "$oid": "679e319470eb957805993db1"
+  },
+  "name": "Lucknow Municipal Corporation",
   "scope": "local",
   "isRural": false,
   "place": {
-    "city": "Ahmedabad",
-    "district": "Ahmedabad"
+    "city": "Lucknow",
+    "district": "Lucknow"
   }
 },
 {
   "_id": {
-    "$oid": "679df49c70eb957805993d94"
+    "$oid": "679e319470eb957805993db2"
   },
-  "name": "Gandhinagar Gram Panchayat",
-  "scope": "local",
-  "isRural": true,
-  "place": {
-    "district": "Gandhinagar",
-    "taluka": "Gandhinagar",
-    "village": "Gandhinagar"
-  }
-},
-{
-  "_id": {
-    "$oid": "679df49c70eb957805993d95"
-  },
-  "name": "Mumbai Municipal Corporation",
+  "name": "Indore Municipal Corporation",
   "scope": "local",
   "isRural": false,
   "place": {
-    "city": "Mumbai",
-    "district": "Mumbai"
+    "city": "Indore",
+    "district": "Indore"
   }
 },
 {
   "_id": {
-    "$oid": "679df49c70eb957805993d96"
+    "$oid": "679e319470eb957805993db3"
   },
-  "name": "Nashik Zilla Parishad",
-  "scope": "local",
-  "isRural": true,
-  "place": {
-    "district": "Nashik",
-    "taluka": "Nashik",
-    "village": "Nashik Rural"
-  }
-},
-{
-  "_id": {
-    "$oid": "679df49c70eb957805993d97"
-  },
-  "name": "Surat Municipal Corporation",
+  "name": "Pune Municipal Corporation",
   "scope": "local",
   "isRural": false,
   "place": {
-    "city": "Surat",
-    "district": "Surat"
+    "city": "Pune",
+    "district": "Pune"
   }
 },
 {
   "_id": {
-    "$oid": "679df49c70eb957805993d98"
+    "$oid": "679e319470eb957805993db4"
   },
-  "name": "Surat District Panchayat",
+  "name": "Jaipur Nagar Nigam",
   "scope": "local",
-  "isRural": true,
+  "isRural": false,
   "place": {
-    "district": "Surat",
-    "taluka": "Surat",
-    "village": "Surat Rural"
+    "city": "Jaipur",
+    "district": "Jaipur"
   }
 },
 {
   "_id": {
-    "$oid": "679df49c70eb957805993d99"
+    "$oid": "679e319470eb957805993db5"
   },
-  "name": "Olpad Taluka Panchayat",
+  "name": "Amritsar Gram Panchayat",
   "scope": "local",
   "isRural": true,
   "place": {
-    "district": "Surat",
-    "taluka": "Olpad",
-    "village": "Olpad"
+    "district": "Amritsar",
+    "taluka": "Ajnala",
+    "village": "Rajasansi"
+  }
+},
+{
+  "_id": {
+    "$oid": "679e319470eb957805993db6"
+  },
+  "name": "Hassan Rural Development Authority",
+  "scope": "local",
+  "isRural": true,
+  "place": {
+    "district": "Hassan",
+    "taluka": "Sakleshpur",
+    "village": "Arehalli"
+  }
+},
+{
+  "_id": {
+    "$oid": "679e319470eb957805993db7"
+  },
+  "name": "Mysuru Rural Health Center",
+  "scope": "local",
+  "isRural": true,
+  "place": {
+    "district": "Mysuru",
+    "taluka": "Nanjangud",
+    "village": "Badanavalu"
+  }
+},
+{
+  "_id": {
+    "$oid": "679e319470eb957805993db8"
+  },
+  "name": "Patna Urban Development Authority",
+  "scope": "local",
+  "isRural": false,
+  "place": {
+    "city": "Patna",
+    "district": "Patna"
+  }
+},
+{
+  "_id": {
+    "$oid": "679e319470eb957805993db9"
+  },
+  "name": "Kerala Water Authority",
+  "scope": "state",
+  "state": "Kerala"
+},
+{
+  "_id": {
+    "$oid": "679e319470eb957805993dba"
+  },
+  "name": "Chandigarh Transport Undertaking",
+  "scope": "state",
+  "state": "Chandigarh"
+},
+{
+  "_id": {
+    "$oid": "679e319470eb957805993dbb"
+  },
+  "name": "Varanasi Nagar Nigam",
+  "scope": "local",
+  "isRural": false,
+  "place": {
+    "city": "Varanasi",
+    "district": "Varanasi"
+  }
+},
+{
+  "_id": {
+    "$oid": "679e319470eb957805993dbc"
+  },
+  "name": "Bhopal Municipal Corporation",
+  "scope": "local",
+  "isRural": false,
+  "place": {
+    "city": "Bhopal",
+    "district": "Bhopal"
   }
 }]

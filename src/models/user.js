@@ -106,6 +106,10 @@ const userSchema = new Schema({
             type: String,
             required: true
         },
+        documentCode: {
+            type: String,
+            required: true
+        },
     }],
 }, {
     timestamps: true

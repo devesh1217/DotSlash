@@ -1,163 +1,270 @@
 [
   {
-    "_id": {
-      "$oid": "679df49c70eb957805993da0"
-    },
-    "name": "Passport Application",
-    "description": "Apply for a new passport or passport renewal",
-    "organization": {
-      "$oid": "679df49c70eb957805993d8f"
-    },
-    "documentCode": "PASS-NEW",
+    "name": "Birth Certificate Registration",
+    "description": "Registration of birth and issuance of a birth certificate.",
+    "organization": "679e319470eb957805993db1",
     "requiredDocuments": [
       {
-        "name": "Proof of Identity",
-        "documentCode": "POI"
+        "name": "Hospital Discharge Summary",
+        "documentCode": "HDS001"
       },
       {
-        "name": "Proof of Address",
-        "documentCode": "POA"
-      },
-      {
-        "name": "Birth Certificate",
-        "documentCode": "BIRTH"
+        "name": "Parent Aadhaar Card",
+        "documentCode": "AAD002"
       }
     ],
     "formFields": [
       {
-        "name": "fullName",
-        "label": "Full Name",
+        "name": "place_of_birth",
+        "label": "Place of Birth",
         "type": "text",
-        "required": true,
-        "validations": {
-          "minLength": 3,
-          "maxLength": 100
-        }
+        "required": true
       },
       {
-        "name": "dateOfBirth",
-        "label": "Date of Birth",
+        "name": "hospital_name",
+        "label": "Hospital Name (if applicable)",
+        "type": "text",
+        "required": false
+      }
+    ],
+    "documentCode": "BRC123"
+  },
+  {
+    "name": "Driving License Application",
+    "description": "Application for a new driving license.",
+    "organization": "679e319470eb957805993dad",
+    "requiredDocuments": [
+      {
+        "name": "Aadhaar Card",
+        "documentCode": "AAD001"
+      },
+      {
+        "name": "Address Proof",
+        "documentCode": "ADR002"
+      }
+    ],
+    "formFields": [
+      {
+        "name": "vehicle_category",
+        "label": "Vehicle Category",
+        "type": "select",
+        "required": true,
+        "options": ["Two-Wheeler", "Four-Wheeler", "Heavy Vehicle"]
+      },
+      {
+        "name": "driving_school_certificate",
+        "label": "Driving School Certificate (if applicable)",
+        "type": "file",
+        "required": false
+      }
+    ],
+    "documentCode": "DLX456"
+  },
+  {
+    "name": "Ration Card Issuance",
+    "description": "Application for a new ration card.",
+    "organization": "679e319470eb957805993db5",
+    "requiredDocuments": [
+      {
+        "name": "Aadhaar Card",
+        "documentCode": "AAD001"
+      },
+      {
+        "name": "Income Certificate",
+        "documentCode": "INC003"
+      }
+    ],
+    "formFields": [
+      {
+        "name": "ration_card_type",
+        "label": "Type of Ration Card",
+        "type": "select",
+        "required": true,
+        "options": ["BPL", "APL", "Antyodaya"]
+      },
+      {
+        "name": "gas_connection_status",
+        "label": "Do you have an LPG gas connection?",
+        "type": "checkbox",
+        "required": false
+      }
+    ],
+    "documentCode": "RC789"
+  },
+  {
+    "name": "Water Connection Request",
+    "description": "Application for a new water connection.",
+    "organization": "679e319470eb957805993db9",
+    "requiredDocuments": [
+      {
+        "name": "Property Tax Receipt",
+        "documentCode": "PTR005"
+      },
+      {
+        "name": "Electricity Bill",
+        "documentCode": "EBL004"
+      }
+    ],
+    "formFields": [
+      {
+        "name": "property_type",
+        "label": "Type of Property",
+        "type": "select",
+        "required": true,
+        "options": ["Residential", "Commercial", "Industrial"]
+      },
+      {
+        "name": "number_of_water_outlets",
+        "label": "Number of Water Outlets Required",
+        "type": "number",
+        "required": true
+      }
+    ],
+    "documentCode": "WTR567"
+  },
+  {
+    "name": "Marriage Certificate Application",
+    "description": "Application for registration and issuance of a marriage certificate.",
+    "organization": "679e319470eb957805993dac",
+    "requiredDocuments": [
+      {
+        "name": "Wedding Invitation Card",
+        "documentCode": "WIC006"
+      },
+      {
+        "name": "Aadhaar Card (Bride & Groom)",
+        "documentCode": "AAD001"
+      }
+    ],
+    "formFields": [
+      {
+        "name": "marriage_date",
+        "label": "Date of Marriage",
         "type": "date",
         "required": true
       },
       {
-        "name": "gender",
-        "label": "Gender",
-        "type": "select",
-        "required": true,
-        "options": ["Male", "Female", "Other"]
-      }
-    ]
-  },
-  {
-    "_id": {
-      "$oid": "679df49c70eb957805993da1"
-    },
-    "name": "School Admission",
-    "description": "Apply for school admission",
-    "organization": {
-      "$oid": "679df49c70eb957805993d90"
-    },
-    "documentCode": "SCH-ADM",
-    "requiredDocuments": [
-      {
-        "name": "Previous School Marksheet",
-        "documentCode": "PREV-MARK"
-      },
-      {
-        "name": "Transfer Certificate",
-        "documentCode": "TC"
+        "name": "witness_count",
+        "label": "Number of Witnesses",
+        "type": "number",
+        "required": true
       }
     ],
-    "formFields": [
-      {
-        "name": "studentName",
-        "label": "Student Name",
-        "type": "text",
-        "required": true
-      },
-      {
-        "name": "class",
-        "label": "Class",
-        "type": "select",
-        "required": true,
-        "options": ["1st", "2nd", "3rd", "4th", "5th"]
-      }
-    ]
+    "documentCode": "MRC890"
   },
   {
-    "_id": {
-      "$oid": "679df49c70eb957805993da2"
-    },
-    "name": "Birth Certificate",
-    "description": "Apply for birth certificate",
-    "organization": {
-      "$oid": "679df49c70eb957805993d93"
-    },
-    "documentCode": "BIRTH-CERT",
-    "requiredDocuments": [
-      {
-        "name": "Hospital Certificate",
-        "documentCode": "HOSP-CERT"
-      },
-      {
-        "name": "Parents' ID Proof",
-        "documentCode": "PAR-ID"
-      }
-    ],
-    "formFields": [
-      {
-        "name": "childName",
-        "label": "Child's Name",
-        "type": "text",
-        "required": true
-      },
-      {
-        "name": "fatherName",
-        "label": "Father's Name",
-        "type": "text",
-        "required": true
-      },
-      {
-        "name": "motherName",
-        "label": "Mother's Name",
-        "type": "text",
-        "required": true
-      }
-    ]
-  },
-  {
-    "_id": {
-      "$oid": "679df49c70eb957805993da3"
-    },
     "name": "Property Tax Payment",
-    "description": "Pay your property tax online",
-    "organization": {
-      "$oid": "679df49c70eb957805993d95"
-    },
-    "documentCode": "PROP-TAX",
+    "description": "Payment of annual property tax.",
+    "organization": "679e319470eb957805993db3",
+    "requiredDocuments": [
+      {
+        "name": "Previous Property Tax Receipt",
+        "documentCode": "PTR005"
+      }
+    ],
+    "formFields": [
+      {
+        "name": "payment_mode",
+        "label": "Preferred Payment Mode",
+        "type": "select",
+        "required": true,
+        "options": ["Online Banking", "Credit Card", "UPI"]
+      }
+    ],
+    "documentCode": "PTP901"
+  },
+  {
+    "name": "Pollution Control Certificate",
+    "description": "Application for vehicle pollution control certification.",
+    "organization": "679e319470eb957805993dae",
+    "requiredDocuments": [
+      {
+        "name": "Vehicle Registration Certificate",
+        "documentCode": "VRC007"
+      }
+    ],
+    "formFields": [
+      {
+        "name": "vehicle_usage",
+        "label": "Vehicle Usage Type",
+        "type": "select",
+        "required": true,
+        "options": ["Personal", "Commercial"]
+      }
+    ],
+    "documentCode": "PCC345"
+  },
+  {
+    "name": "Electricity Connection Request",
+    "description": "Application for new electricity connection.",
+    "organization": "679e319470eb957805993dac",
     "requiredDocuments": [
       {
         "name": "Property Ownership Document",
-        "documentCode": "PROP-DOC"
+        "documentCode": "POD008"
+      },
+      {
+        "name": "Address Proof",
+        "documentCode": "ADR002"
       }
     ],
     "formFields": [
       {
-        "name": "propertyId",
-        "label": "Property ID",
-        "type": "text",
+        "name": "connection_load",
+        "label": "Required Load (kW)",
+        "type": "number",
         "required": true
+      }
+    ],
+    "documentCode": "ELEC112"
+  },
+  {
+    "name": "Business License Registration",
+    "description": "Application for obtaining a new business license.",
+    "organization": "679e319470eb957805993dad",
+    "requiredDocuments": [
+      {
+        "name": "GST Registration Certificate",
+        "documentCode": "GST009"
       },
       {
-        "name": "amount",
-        "label": "Tax Amount",
-        "type": "number",
-        "required": true,
-        "validations": {
-          "min": 1
-        }
+        "name": "PAN Card",
+        "documentCode": "PAN010"
       }
-    ]
+    ],
+    "formFields": [
+      {
+        "name": "business_type",
+        "label": "Business Type",
+        "type": "select",
+        "required": true,
+        "options": ["Sole Proprietorship", "Partnership", "Private Limited"]
+      }
+    ],
+    "documentCode": "BLR678"
+  },
+  {
+    "name": "Senior Citizen ID Application",
+    "description": "Application for senior citizen identity card.",
+    "organization": "679e319470eb957805993db0",
+    "requiredDocuments": [
+      {
+        "name": "Aadhaar Card",
+        "documentCode": "AAD001"
+      },
+      {
+        "name": "Age Proof",
+        "documentCode": "AGE011"
+      }
+    ],
+    "formFields": [
+      {
+        "name": "emergency_contact",
+        "label": "Emergency Contact Number",
+        "type": "number",
+        "required": true
+      }
+    ],
+    "documentCode": "SCID223"
   }
 ]
