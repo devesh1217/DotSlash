@@ -2,6 +2,17 @@ import * as jose from 'jose';
 import jwt from 'jsonwebtoken'; // Keep for non-edge contexts
 
 // For Edge Runtime (middleware)
+export const verifyAadharToken = (token) => {
+    if (!token) return null;
+    try {
+        const payload = jwt.verify(token, process.env.JWT_SECRET);
+        console.log(payload)
+        return payload;
+    } catch (error) {
+        console.error('Token verification failed:', error);
+        return null;
+    }
+};
 export const verifyAuthToken = async (token) => {
     if (!token) return null;
     try {

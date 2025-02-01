@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { verifyAuthToken } from '@/lib/auth';
+import { verifyAadharToken } from '@/lib/auth';
 import User from '@/models/user';
 import connectDB from '@/lib/db';
 import axios from 'axios';
@@ -20,7 +20,8 @@ export async function POST(req) {
             );
         }
 
-        const decoded = verifyAuthToken(tempToken);
+        const decoded = verifyAadharToken(tempToken);
+        console.log(decoded.step);
         if (!decoded || decoded.step !== 1) {
             return NextResponse.json(
                 { error: 'Invalid or expired session' },

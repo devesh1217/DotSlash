@@ -5,6 +5,7 @@ import User from '@/models/user';
 import { verifyAuthToken, verifyToken } from '@/lib/auth';
 import { generateDocumentHash, generateDocumentNumber } from '@/lib/documentHash';
 import mongoose from 'mongoose';
+import { sendApplicationStatusEmail } from '@/lib/mail';
 
 export async function GET(req, { params }) {
     try {
@@ -67,6 +68,22 @@ export async function PATCH(req, { params }) {
             return NextResponse.json({ error: 'Application not found' }, { status: 404 });
         }
 
+        // If status is changing, send email notification
+        if (status && status !== application.status) {
+            try {
+                await sendApplicationStatusEmail(
+                    application.userId.email,
+                    `${application.userId.name.first} ${application.userId.name.last}`,
+                    application.applicationNumber,
+                    status,
+                    remarks
+                );
+            } catch (emailError) {
+                console.error('Failed to send status notification email:', emailError);
+                // Continue with the update even if email fails
+            }
+        }
+
         // If approving the application, generate the document
         if (status === 'approved') {
             const documentData = {
@@ -112,8 +129,6 @@ export async function PATCH(req, { params }) {
         )
         .populate('serviceId')
         .populate('userId', 'email name');
-
-        // Here you could add email notification logic
         
         return NextResponse.json(updatedApplication);
 

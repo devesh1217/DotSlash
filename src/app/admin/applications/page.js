@@ -158,8 +158,8 @@ export default function AdminApplications() {
                                         <td className="px-6 py-4">{app.applicationNumber}</td>
                                         <td className="px-6 py-4">{app.serviceId.name}</td>
                                         <td className="px-6 py-4">
-                                            {app.userId.name.first} {app.userId.name.last}<br />
-                                            <span className="text-sm text-gov-text-light">{app.userId.email}</span>
+                                            {app.userId?.name.first} {app.userId?.name.last}<br />
+                                            <span className="text-sm text-gov-text-light">{app.userId?.email}</span>
                                         </td>
                                         <td className="px-6 py-4">
                                             <span className={`px-2 py-1 rounded-full text-xs ${getStatusColor(app.status)}`}>

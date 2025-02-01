@@ -3,10 +3,10 @@ import { useState, useRef, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 
 const LoadingDots = () => (
-    <div className="flex space-x-2 p-3 bg-slate-700 rounded-lg max-w-[80%]">
-        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+    <div className="flex space-x-2 p-3 bg-gov-dark rounded-lg max-w-[80%]">
+        <div className="w-2 h-2 bg-gov-text-light rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+        <div className="w-2 h-2 bg-gov-text-light rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+        <div className="w-2 h-2 bg-gov-text-light rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
     </div>
 );
 
@@ -66,7 +66,7 @@ const Chatbot = () => {
                 onClick={() => setIsOpen(!isOpen)}
                 type="button"
                 aria-label={isOpen ? 'Close chat' : 'Open chat'}
-                className="absolute bottom-4 right-4 w-14 h-14 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                className="absolute bottom-4 right-4 w-14 h-14 bg-gov-primary text-white rounded-full shadow-gov hover:bg-gov-primary-light transition-all duration-300 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gov-primary"
             >
                 {isOpen ? (
                     <svg
@@ -95,21 +95,21 @@ const Chatbot = () => {
                     isOpen ? 'translate-y-0 opacity-100 pointer-events-auto' : 'translate-y-full opacity-0 pointer-events-none'
                 }`}
             >
-                <div className="bg-slate-800 rounded-lg shadow-xl flex flex-col h-[500px] border border-slate-600">
+                <div className="bg-gov-dark rounded-lg shadow-gov flex flex-col h-[500px] border border-gov-border">
                     {/* Chat Header */}
-                    <div className="p-4 border-b border-slate-600 bg-slate-700 rounded-t-lg">
+                    <div className="p-4 border-b border-gov-border bg-gov-primary rounded-t-lg">
                         <h3 className="text-white font-semibold">Chat Assistant</h3>
                     </div>
 
                     {/* Messages Area */}
-                    <div className="flex-1 p-4 overflow-y-auto bg-slate-800">
+                    <div className="flex-1 p-4 overflow-y-auto bg-gov-dark">
                         <div className="space-y-4">
                             {messages.map((msg, index) => (
                                 <div key={index} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
                                     <div className={`max-w-[80%] p-3 rounded-lg ${
                                         msg.sender === 'user' 
-                                            ? 'bg-blue-600 text-white' 
-                                            : 'bg-slate-700 text-gray-100'
+                                            ? 'bg-gov-primary text-white' 
+                                            : 'bg-gov-secondary text-gray-100'
                                     }`}>
                                         <ReactMarkdown className="prose prose-invert max-w-none">
                                             {msg.text}
@@ -127,7 +127,7 @@ const Chatbot = () => {
                     </div>
 
                     {/* Input Area */}
-                    <form onSubmit={handleSendMessage} className="p-4 border-t border-slate-600 bg-slate-700 rounded-b-lg">
+                    <form onSubmit={handleSendMessage} className="p-4 border-t border-gov-border bg-gov-primary rounded-b-lg">
                         <div className="flex space-x-2">
                             <input
                                 type="text"
@@ -135,12 +135,12 @@ const Chatbot = () => {
                                 onChange={(e) => setInput(e.target.value)}
                                 placeholder="Type a message..."
                                 disabled={isLoading}
-                                className="flex-1 p-2 bg-slate-800 border border-slate-600 rounded-md text-white focus:outline-none focus:border-blue-500 disabled:opacity-50"
+                                className="flex-1 p-2 bg-gov-input border border-gov-border rounded-md text-gov-text focus:outline-none focus:border-gov-primary disabled:opacity-50"
                             />
                             <button 
                                 type="submit"
                                 disabled={isLoading || !input.trim()}
-                                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="px-4 py-2 bg-gov-accent text-gov-dark rounded-md hover:bg-gov-hover transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {isLoading ? 'Sending...' : 'Send'}
                             </button>

@@ -54,3 +54,32 @@ export const sendResetEmail = async (email, token) => {
         throw new Error('Failed to send reset email');
     }
 };
+
+export const sendApplicationStatusEmail = async (userEmail, userName, applicationNumber, status, remarks) => {
+    try {
+        const statusMessages = {
+            approved: 'has been approved',
+            rejected: 'has been rejected',
+            processing: 'is now being processed'
+        };
+
+        const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: userEmail,
+            subject: `Application Status Update - ${applicationNumber}`,
+            html: `
+                <h1>Application Status Update</h1>
+                <p>Dear ${userName},</p>
+                <p>Your application (${applicationNumber}) ${statusMessages[status] || 'has been updated'}.</p>
+                ${remarks ? `<p><strong>Remarks:</strong> ${remarks}</p>` : ''}
+                <p>You can check your application status by logging into your account.</p>
+                <p>If you have any questions, please contact our support team.</p>
+            `
+        };
+
+        await transporter.sendMail(mailOptions);
+    } catch (error) {
+        console.error('Error sending application status email:', error);
+        throw new Error('Failed to send application status email');
+    }
+};

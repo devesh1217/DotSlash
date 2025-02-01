@@ -1,7 +1,6 @@
 'use client'
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect, Suspense, use } from 'react';
 import { useRouter } from 'next/navigation';
-import ApplicationDetails from './ApplicationDetails';
 
 function ApplicationContent({ applicationId }) {
     const router = useRouter();
@@ -232,6 +231,12 @@ function ApplicationContent({ applicationId }) {
 // Wrapper component to handle params
 
 export default function ApplicationPage({ params }) {
-    const applicationId = params.id;
-    return <ApplicationContent applicationId={applicationId} />;
+    const resolvedParams = use(params);
+    const applicationId = resolvedParams.id;
+    
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <ApplicationContent applicationId={applicationId} />
+        </Suspense>
+    );
 }
