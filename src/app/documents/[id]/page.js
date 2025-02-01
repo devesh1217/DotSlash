@@ -1,12 +1,16 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Card, Descriptions, Button, message, Skeleton, Result, Tag, Divider } from 'antd';
-import { ArrowLeftOutlined, SafetyCertificateOutlined, ClockCircleOutlined } from '@ant-design/icons';
+import { ArrowLeftOutlined, SafetyCertificateOutlined, ClockCircleOutlined, DownloadOutlined, QrcodeOutlined } from '@ant-design/icons';
+import { QRCodeSVG } from 'qrcode.react';
+import html2pdf from 'html2pdf.js';
+import DocumentPDF from '@/components/DocumentPDF';
 
 export default function DocumentDetail({ params }) {
     const [document, setDocument] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const documentRef = useRef(null);
 
     useEffect(() => {
         fetchDocument();
@@ -31,6 +35,28 @@ export default function DocumentDetail({ params }) {
         } finally {
             setLoading(false);
         }
+    };
+
+    const generatePDF = () => {
+        const element = documentRef.current;
+        const opt = {
+            margin: 0.5,
+            filename: `document-${document.documentCode}.pdf`,
+            image: { type: 'jpeg', quality: 1 },
+            html2canvas: { 
+                scale: 2,
+                useCORS: true,
+                logging: false,
+                letterRendering: true
+            },
+            jsPDF: { 
+                unit: 'in', 
+                format: 'a4', 
+                orientation: 'portrait'
+            }
+        };
+
+        html2pdf().set(opt).from(element).save();
     };
 
     return (
@@ -93,14 +119,34 @@ export default function DocumentDetail({ params }) {
                         </Descriptions>
                     </Card>
 
-                    <Card title="Document Hash" className="shadow-md">
-                        <div className="bg-gray-50 p-4 rounded-lg">
-                            <code className="break-all text-sm">{document.docHash}</code>
-                        </div>
-                        <p className="text-gray-500 mt-2 text-sm">
-                            This is a unique identifier for your document stored on the blockchain
-                        </p>
-                    </Card>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <Card title="QR Code" className="shadow-md">
+                            <div className="flex flex-col items-center">
+                                <QRCodeSVG 
+                                    value={JSON.stringify({
+                                        documentCode: document.documentCode,
+                                        documentNumber: document.documentNumber,
+                                        docHash: document.docHash,
+                                        verificationUrl: `${window.location.origin}/verify/${document.documentCode}`
+                                    })}
+                                    size={200}
+                                    level="H"
+                                />
+                                <p className="text-gray-500 mt-4 text-sm text-center">
+                                    Scan to verify document authenticity
+                                </p>
+                            </div>
+                        </Card>
+
+                        <Card title="Document Hash" className="shadow-md">
+                            <div className="bg-gray-50 p-4 rounded-lg">
+                                <code className="break-all text-sm">{document.docHash}</code>
+                            </div>
+                            <p className="text-gray-500 mt-2 text-sm">
+                                This is a unique identifier for your document stored on the blockchain
+                            </p>
+                        </Card>
+                    </div>
 
                     <Card title="Document Timeline" className="shadow-md">
                         <div className="space-y-4">
@@ -117,6 +163,26 @@ export default function DocumentDetail({ params }) {
                             </div>
                         </div>
                     </Card>
+
+                    <div className="flex justify-center mt-6">
+                        <Button 
+                            type="primary"
+                            icon={<DownloadOutlined />}
+                            onClick={generatePDF}
+                            size="large"
+                        >
+                            Download PDF
+                        </Button>
+                    </div>
+                </div>
+            )}
+
+            {/* Hidden PDF template - Only render when document is available */}
+            {document && !loading && !error && (
+                <div className="hidden">
+                    <div ref={documentRef}>
+                        <DocumentPDF document={document} />
+                    </div>
                 </div>
             )}
         </div>
