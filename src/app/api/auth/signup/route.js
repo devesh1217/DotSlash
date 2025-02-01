@@ -4,10 +4,20 @@ import User from '@/models/user';
 import connectDB from '@/lib/db';
 import crypto from 'crypto';
 import { sendVerificationEmail } from '@/lib/mail';
+import jwt from 'jsonwebtoken';
 
 export async function POST(req) {
     try {
-        const { name, email, password, mobileNo } = await req.json();
+        const { 
+            firstName, 
+            middleName, 
+            lastName, 
+            email, 
+            password, 
+            mobileNo,
+            dob,
+            gender,
+        } = await req.json();
         
         await connectDB();
 
@@ -27,13 +37,20 @@ export async function POST(req) {
         // Create verification token
         const verificationToken = crypto.randomBytes(32).toString('hex');
 
-        // Create new user
+        // Create new user with initial registration step
         const user = new User({
-            name,
+            name: {
+                first: firstName,
+                middle: middleName,
+                last: lastName
+            },
             email,
             mobileNo,
             password: hashedPassword,
-            verificationToken
+            verificationToken,
+            dob: new Date(dob),
+            gender,
+            registrationStep: 1
         });
 
         await user.save();
@@ -41,11 +58,20 @@ export async function POST(req) {
         // Send verification email
         await sendVerificationEmail(email, verificationToken);
 
-        return NextResponse.json(
-            { message: 'User created successfully. Please verify your email.' },
-            { status: 201 }
+        // Generate temporary token for continuing registration
+        const tempToken = jwt.sign(
+            { userId: user._id, step: 1 },
+            process.env.JWT_SECRET,
+            { expiresIn: '1h' }
         );
+
+        return NextResponse.json({
+            message: 'Basic registration successful. Please verify your email and complete Aadhaar verification.',
+            tempToken,
+            nextStep: 'aadhaar-verification'
+        }, { status: 201 });
     } catch (error) {
+        console.error('Signup error:', error);
         return NextResponse.json(
             { error: 'Internal server error' },
             { status: 500 }

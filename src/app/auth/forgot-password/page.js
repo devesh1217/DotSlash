@@ -65,7 +65,7 @@ export default function ForgotPassword() {
                                 id="email"
                                 type="email"
                                 required
-                                className="appearance-none rounded-lg relative block w-full px-3 py-2 mt-1 border border-gray-700 bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="appearance-none rounded-lg relative block w-full px-3 py-2 mt-1 border border-gray-700 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 placeholder="Enter your email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}

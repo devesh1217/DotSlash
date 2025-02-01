@@ -18,8 +18,8 @@ export default {
           'dark': '#2F0808',      // Dark maroon
           'error': '#DC2626',     // Error red
           'success': '#059669',    // Success green
-          'text': '#000',    // Success green
-          'bg': '#fff3cb'    // Success green
+          'text': '#000', 
+          'label': '#aaa'   // Success green
         }
       },
     },

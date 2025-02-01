@@ -28,8 +28,9 @@ export default function Login() {
 
             if (!res.ok) throw new Error(data.error);
 
-            // Save token to localStorage or handle with your preferred method
+            // Save token and user data
             localStorage.setItem('token', data.token);
+            localStorage.setItem('user', JSON.stringify(data.user));
             router.push('/dashboard');
         } catch (err) {
             setError(err.message);
@@ -70,7 +71,7 @@ export default function Login() {
                                 name="email"
                                 type="email"
                                 required
-                                className="appearance-none rounded-lg relative block w-full px-3 py-2 mt-1 border border-gov-input-border bg-white text-gov-input-text placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gov-primary focus:border-gov-primary"
+                                className="appearance-none rounded-lg relative block w-full px-3 py-2 mt-1 border border-gov-input-border bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gov-primary focus:border-gov-primary"
                                 placeholder="example@email.com"
                                 value={formData.email}
                                 onChange={(e) => setFormData({...formData, email: e.target.value})}
@@ -83,7 +84,7 @@ export default function Login() {
                                 name="password"
                                 type="password"
                                 required
-                                className="appearance-none rounded-lg relative block w-full px-3 py-2 mt-1 border border-gov-input-border bg-white text-gov-input-text placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gov-primary focus:border-gov-primary"
+                                className="appearance-none rounded-lg relative block w-full px-3 py-2 mt-1 border border-gov-input-border bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gov-primary focus:border-gov-primary"
                                 placeholder="••••••••"
                                 value={formData.password}
                                 onChange={(e) => setFormData({...formData, password: e.target.value})}

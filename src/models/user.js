@@ -1,18 +1,51 @@
 import mongoose from 'mongoose';
+import { v4 as uuidv4 } from 'uuid';
 
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-    name: {
+    uuid: {
         type: String,
-        required: true,
-        trim: true
+        default: uuidv4,
+        unique: true
+    },
+    name: {
+        first: {
+            type: String,
+            required: true,
+            trim: true
+        },
+        middle: {
+            type: String,
+            trim: true
+        },
+        last: {
+            type: String,
+            required: true,
+            trim: true
+        }
+    },
+    dob: {
+        type: Date,
+        required: true
+    },
+    guardianLink: {
+        type: String,
+        ref: 'User'
+    },
+    blockchainIdHash: {
+        type: String
     },
     email: {
         type: String,
         required: true,
         unique: true,
         trim: true
+    },
+    gender: {
+        type: String,
+        enum: ['Male', 'Female', 'Other'],
+        required: true
     },
     mobileNo: {
         type: String,
@@ -37,6 +70,24 @@ const userSchema = new Schema({
     resetPasswordExpires: {
         type: Date,
         default: null
+    },
+    aadharNo: {
+        type: String,
+        sparse: true, // Allows null but ensures uniqueness when present
+        trim: true
+    },
+    aadharCard: {
+        type: String, // URL or path to stored document
+        default: null
+    },
+    isAadharVerified: {
+        type: Boolean,
+        default: false
+    },
+    registrationStep: {
+        type: Number,
+        default: 1, // 1: Basic Info, 2: Aadhaar Verification, 3: Completed
+        enum: [1, 2, 3]
     }
 }, {
     timestamps: true

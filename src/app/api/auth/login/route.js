@@ -48,8 +48,16 @@ export async function POST(req) {
             token,
             user: {
                 id: user._id,
-                name: user.name,
-                email: user.email
+                uuid: user.uuid,
+                name: {
+                    first: user.name.first,
+                    middle: user.name.middle,
+                    last: user.name.last
+                },
+                email: user.email,
+                gender: user.gender,
+                stageOfLife: user.stageOfLife,
+                dob: user.dob
             }
         });
     } catch (error) {
