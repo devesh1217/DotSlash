@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Skeleton } from '@/components/ui/Skeleton';
 import FormField from './FormField';
+import SuccessModal from './SuccessModal';
 
 function ServiceApplication({ serviceId }) {
     const router = useRouter();
@@ -12,31 +13,24 @@ function ServiceApplication({ serviceId }) {
     const [formData, setFormData] = useState({});
     const [userDocuments, setUserDocuments] = useState([]);
     const [documentStatus, setDocumentStatus] = useState({});
+    const [showSuccess, setShowSuccess] = useState(false);
+    const [applicationNumber, setApplicationNumber] = useState(null);
+    const [verifyingDocuments, setVerifyingDocuments] = useState(false);
 
-    // Fetch both service details and user documents
+    // Modified useEffect to only fetch service details initially
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchService = async () => {
             try {
-                const [serviceRes, documentsRes] = await Promise.all([
-                    fetch(`/api/services/${serviceId}`),
-                    fetch('/api/user/documents',{headers: {Authorization: 'Bearer ' + localStorage.getItem('token')}})
-                ]);
-
+                const serviceRes = await fetch(`/api/services/${serviceId}`);
                 const serviceData = await serviceRes.json();
-                const documentsData = await documentsRes.json();
 
                 if (!serviceRes.ok) throw new Error(serviceData.error);
-                if (!documentsRes.ok) throw new Error(documentsData.error);
-
                 setService(serviceData);
-                setUserDocuments(documentsData.documents);
 
-                // Check document availability
+                // Initialize empty document status
                 const status = {};
                 serviceData.requiredDocuments.forEach(doc => {
-                    status[doc.documentCode] = documentsData.documents.some(
-                        userDoc => userDoc.documentCode === doc.documentCode
-                    );
+                    status[doc.documentCode] = false;
                 });
                 setDocumentStatus(status);
 
@@ -54,8 +48,39 @@ function ServiceApplication({ serviceId }) {
             }
         };
 
-        fetchData();
+        fetchService();
     }, [serviceId]);
+
+    const verifyDocuments = async () => {
+        setVerifyingDocuments(true);
+        try {
+            // Artificial delay for UX
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
+            const documentsRes = await fetch('/api/user/documents', {
+                headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
+            });
+            const documentsData = await documentsRes.json();
+
+            if (!documentsRes.ok) throw new Error(documentsData.error);
+
+            setUserDocuments(documentsData.documents);
+
+            // Check document availability
+            const status = {};
+            service.requiredDocuments.forEach(doc => {
+                status[doc.documentCode] = documentsData.documents.some(
+                    userDoc => userDoc.documentCode === doc.documentCode
+                );
+            });
+            setDocumentStatus(status);
+
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setVerifyingDocuments(false);
+        }
+    };
 
     const handleInputChange = React.useCallback((e) => {
         const { name, value } = e.target;
@@ -128,8 +153,8 @@ function ServiceApplication({ serviceId }) {
                 throw new Error(data.error || 'Failed to submit application');
             }
 
-            alert(`Application submitted successfully!\nApplication Number: ${data.applicationNumber}`);
-            router.push('/dashboard'); // Or wherever you want to redirect
+            setApplicationNumber(data.applicationNumber);
+            setShowSuccess(true);
         } catch (error) {
             alert('Error submitting application: ' + error.message);
         }
@@ -199,78 +224,108 @@ function ServiceApplication({ serviceId }) {
     );
 
     return (
-        <div className="max-w-4xl mx-auto p-6 bg-gov-light">
-            <div className="mb-8">
-                <h1 className="text-3xl font-bold text-gov-primary mb-2">{service.name}</h1>
-                <p className="text-gov-dark">{service.description}</p>
-                <div className="flex items-center mt-2 text-gov-secondary">
-                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                    </svg>
-                    <span>{service.organization.name}</span>
-                </div>
-            </div>
-
-            <ProgressSteps currentStep={0} />
-
-            <form onSubmit={handleSubmit} className="space-y-8">
-                {/* Required Documents Section */}
-                <section className="bg-white p-6 rounded-lg shadow-lg border border-gov-light">
-                    <h2 className="text-xl font-semibold mb-6 text-gov-primary">Required Documents</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {service.requiredDocuments.map((doc) => (
-                            <DocumentStatusCard
-                                key={doc.documentCode}
-                                doc={doc}
-                            />
-                        ))}
+        <>
+            <div className="max-w-4xl mx-auto p-6 bg-gov-light">
+                <div className="mb-8">
+                    <h1 className="text-3xl font-bold text-gov-primary mb-2">{service.name}</h1>
+                    <p className="text-gov-dark">{service.description}</p>
+                    <div className="flex items-center mt-2 text-gov-secondary">
+                        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                        <span>{service.organization.name}</span>
                     </div>
-                    {!canSubmit() && (
-                        <div className="mt-4 p-4 bg-gov-error/10 rounded-lg">
-                            <p className="text-gov-error text-sm">
-                                Some required documents are missing. Please obtain them before proceeding.
-                            </p>
+                </div>
+
+                <ProgressSteps currentStep={0} />
+
+                <form onSubmit={handleSubmit} className="space-y-8">
+                    {/* Required Documents Section */}
+                    <section className="bg-white p-6 rounded-lg shadow-lg border border-gov-light">
+                        <div className="flex justify-between items-center mb-6">
+                            <h2 className="text-xl font-semibold text-gov-primary">Required Documents</h2>
+                            <button
+                                type="button"
+                                onClick={verifyDocuments}
+                                disabled={verifyingDocuments}
+                                className={`px-4 py-2 rounded-md transition-colors ${
+                                    verifyingDocuments
+                                        ? 'bg-gov-light text-gov-dark cursor-not-allowed'
+                                        : 'bg-gov-primary text-white hover:bg-gov-dark'
+                                }`}
+                            >
+                                {verifyingDocuments ? (
+                                    <span className="flex items-center">
+                                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                        </svg>
+                                        Verifying...
+                                    </span>
+                                ) : 'Verify Documents'}
+                            </button>
                         </div>
-                    )}
-                </section>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {service.requiredDocuments.map((doc) => (
+                                <DocumentStatusCard
+                                    key={doc.documentCode}
+                                    doc={doc}
+                                />
+                            ))}
+                        </div>
+                        {!canSubmit() && (
+                            <div className="mt-4 p-4 bg-gov-error/10 rounded-lg">
+                                <p className="text-gov-error text-sm">
+                                    Some required documents are missing. Please obtain them before proceeding.
+                                </p>
+                            </div>
+                        )}
+                    </section>
 
-                {/* Form Fields Section */}
-                <section className="bg-white p-6 rounded-lg shadow-lg border border-gov-light">
-                    <h2 className="text-xl font-semibold mb-6 text-gov-primary">Application Details</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {service.formFields.map((field) => (
-                            <FormField
-                                key={`${field.name}-field`}
-                                field={field}
-                                value={formData[field.name]}
-                                onChange={handleInputChange}
-                            />
-                        ))}
+                    {/* Form Fields Section */}
+                    <section className="bg-white p-6 rounded-lg shadow-lg border border-gov-light">
+                        <h2 className="text-xl font-semibold mb-6 text-gov-primary">Application Details</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {service.formFields.map((field) => (
+                                <FormField
+                                    key={`${field.name}-field`}
+                                    field={field}
+                                    value={formData[field.name]}
+                                    onChange={handleInputChange}
+                                />
+                            ))}
+                        </div>
+                    </section>
+
+                    <div className="flex justify-end space-x-4 pt-4">
+                        <button
+                            type="button"
+                            onClick={() => router.back()}
+                            className="px-6 py-2 border text-gov-text border-gov-dark rounded-md hover:bg-gov-dark/50 transition-colors "
+                        >
+                            Cancel
+                        </button>
+                        <button
+                            type="submit"
+                            disabled={!canSubmit()}
+                            className={`px-6 py-2 rounded-md transition-colors ${
+                                canSubmit()
+                                    ? 'bg-gov-primary text-white hover:bg-gov-dark'
+                                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                            }`}
+                        >
+                            Submit Application
+                        </button>
                     </div>
-                </section>
-
-                <div className="flex justify-end space-x-4 pt-4">
-                    <button
-                        type="button"
-                        onClick={() => router.back()}
-                        className="px-6 py-2 border text-gov-text border-gov-dark rounded-md hover:bg-gov-dark/50 transition-colors "
-                    >
-                        Cancel
-                    </button>
-                    <button
-                        type="submit"
-                        disabled={!canSubmit()}
-                        className={`px-6 py-2 rounded-md transition-colors ${
-                            canSubmit()
-                                ? 'bg-gov-primary text-white hover:bg-gov-dark'
-                                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                        }`}
-                    >
-                        Submit Application
-                    </button>
-                </div>
-            </form>
-        </div>
+                </form>
+            </div>
+            {showSuccess && (
+                <SuccessModal
+                    applicationNumber={applicationNumber}
+                    onClose={() => setShowSuccess(false)}
+                />
+            )}
+        </>
     );
 }
 

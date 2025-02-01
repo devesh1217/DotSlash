@@ -1,9 +1,13 @@
 'use client'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaHome, FaUser, FaFileAlt, FaCog, FaSignOutAlt, FaBars } from 'react-icons/fa';
+import { useRouter } from 'next/navigation';
 
 export default function Dashboard() {
+  const router = useRouter();
   const [isSidebarOpen, setSidebarOpen] = useState(true);
+  const [applications, setApplications] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const menuItems = [
     { icon: <FaHome className="w-5 h-5" />, label: 'Home', link: '#' },
@@ -11,6 +15,38 @@ export default function Dashboard() {
     { icon: <FaFileAlt className="w-5 h-5" />, label: 'Documents', link: '#' },
     { icon: <FaCog className="w-5 h-5" />, label: 'Settings', link: '#' },
   ];
+
+  useEffect(() => {
+    const fetchApplications = async () => {
+      try {
+        const response = await fetch('/api/user/applications', {
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+          }
+        });
+        const data = await response.json();
+        if (response.ok) {
+          setApplications(data.applications);
+        }
+      } catch (error) {
+        console.error('Error fetching applications:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchApplications();
+  }, []);
+
+  const getStatusColor = (status) => {
+    const colors = {
+      pending: 'bg-yellow-100 text-yellow-800',
+      processing: 'bg-blue-100 text-blue-800',
+      approved: 'bg-green-100 text-green-800',
+      rejected: 'bg-red-100 text-red-800'
+    };
+    return colors[status] || colors.pending;
+  };
 
   return (
     <div className="flex h-screen bg-gray-100">
@@ -64,6 +100,58 @@ export default function Dashboard() {
             <div className="bg-white rounded-lg shadow p-6">
               <h3 className="text-gray-600 text-sm font-medium">Completed Tasks</h3>
               <p className="text-2xl font-bold text-gray-800 mt-2">892</p>
+            </div>
+
+            {/* Recent Applications Section */}
+            <div className="mt-6">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-lg font-semibold text-gray-800">Recent Applications</h2>
+                <button
+                  onClick={() => router.push('/dashboard/applications')}
+                  className="text-gov-primary hover:text-gov-dark text-sm"
+                >
+                  View All
+                </button>
+              </div>
+              <div className="bg-white rounded-lg shadow overflow-hidden">
+                {loading ? (
+                  <div className="p-4">Loading...</div>
+                ) : applications.length === 0 ? (
+                  <div className="p-4 text-center text-gray-500">
+                    No applications found
+                  </div>
+                ) : (
+                  <div className="divide-y divide-gray-200">
+                    {applications.map((app) => (
+                      <div
+                        key={app._id}
+                        className="p-4 hover:bg-gray-50 cursor-pointer"
+                        onClick={() => router.push(`/dashboard/applications/${app.applicationNumber}`)}
+                      >
+                        <div className="flex justify-between items-start">
+                          <div>
+                            <h3 className="text-sm font-medium text-gray-800">
+                              {app.serviceId.name}
+                            </h3>
+                            <p className="text-sm text-gray-500">
+                              Application #{app.applicationNumber}
+                            </p>
+                          </div>
+                          <span className={`px-2 py-1 rounded-full text-xs ${getStatusColor(app.status)}`}>
+                            {app.status.charAt(0).toUpperCase() + app.status.slice(1)}
+                          </span>
+                        </div>
+                        <div className="mt-2 flex justify-between text-xs text-gray-500">
+                          <span>{app.serviceId.organization.name}</span>
+                          <span>
+                            {new Date(app.createdAt).toLocaleDateString()}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Recent Activity Section */}

@@ -46,7 +46,8 @@ const serviceSchema = new Schema({
     }],
     documentCode: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
 }, {
     timestamps: true

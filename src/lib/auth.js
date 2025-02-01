@@ -1,15 +1,32 @@
-import jwt from 'jsonwebtoken';
+import * as jose from 'jose';
+import jwt from 'jsonwebtoken'; // Keep for non-edge contexts
 
-export const verifyAuthToken = (token) => {
+// For Edge Runtime (middleware)
+export const verifyAuthToken = async (token) => {
     if (!token) return null;
     try {
-        return jwt.verify(token, process.env.JWT_SECRET);
+        const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+        const { payload } = await jose.jwtVerify(token, secret);
+        return payload.userId;
     } catch (error) {
         console.error('Token verification failed:', error);
         return null;
     }
 };
 
+// For API Routes (non-edge context)
+export const verifyToken = (token) => {
+    if (!token) return null;
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        return decoded.userId;
+    } catch (error) {
+        console.error('Token verification failed:', error);
+        return null;
+    }
+};
+
+// For generating tokens (non-edge context)
 export const generateToken = (payload, expiresIn = '7d') => {
     return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn });
 };

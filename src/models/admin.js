@@ -26,8 +26,11 @@ const AdminSchema = new Schema({
         ref: 'Organization',
         required: true
     }
-},{
+}, {
     timestamps: true
 });
 
-export default mongoose.model('Admin', AdminSchema);
+// Check if the model exists before compiling it
+const Admin = mongoose.models.Admin || mongoose.model('Admin', AdminSchema);
+
+export default Admin;
