@@ -52,4 +52,6 @@ const organizationSchema = new Schema({
     }
 });
 
-export default mongoose.model('Organization', organizationSchema);
+// Export both schema and model
+export { organizationSchema };
+export default mongoose.models.Organization || mongoose.model('Organization', organizationSchema);

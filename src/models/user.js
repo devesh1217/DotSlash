@@ -88,7 +88,25 @@ const userSchema = new Schema({
         type: Number,
         default: 1, // 1: Basic Info, 2: Aadhaar Verification, 3: Completed
         enum: [1, 2, 3]
-    }
+    },
+    documents: [{
+        name: {
+            type: String,
+            required: true
+        },
+        authority: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Organization',
+        },
+        documentNumber: {
+            type: String,
+            required: true
+        },
+        docHash: {
+            type: String,
+            required: true
+        },
+    }],
 }, {
     timestamps: true
 });

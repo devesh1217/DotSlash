@@ -1,0 +1,118 @@
+[{
+  "_id": {
+    "$oid": "679df49c70eb957805993d8f"
+  },
+  "name": "Ministry of Home Affairs",
+  "scope": "central"
+},
+{
+  "_id": {
+    "$oid": "679df49c70eb957805993d90"
+  },
+  "name": "Ministry of Education",
+  "scope": "central"
+},
+{
+  "_id": {
+    "$oid": "679df49c70eb957805993d91"
+  },
+  "name": "Department of Health - Maharashtra",
+  "scope": "state",
+  "state": "Maharashtra"
+},
+{
+  "_id": {
+    "$oid": "679df49c70eb957805993d92"
+  },
+  "name": "Department of Education - Gujarat",
+  "scope": "state",
+  "state": "Gujarat"
+},
+{
+  "_id": {
+    "$oid": "679df49c70eb957805993d93"
+  },
+  "name": "Ahmedabad Municipal Corporation",
+  "scope": "local",
+  "isRural": false,
+  "place": {
+    "city": "Ahmedabad",
+    "district": "Ahmedabad"
+  }
+},
+{
+  "_id": {
+    "$oid": "679df49c70eb957805993d94"
+  },
+  "name": "Gandhinagar Gram Panchayat",
+  "scope": "local",
+  "isRural": true,
+  "place": {
+    "district": "Gandhinagar",
+    "taluka": "Gandhinagar",
+    "village": "Gandhinagar"
+  }
+},
+{
+  "_id": {
+    "$oid": "679df49c70eb957805993d95"
+  },
+  "name": "Mumbai Municipal Corporation",
+  "scope": "local",
+  "isRural": false,
+  "place": {
+    "city": "Mumbai",
+    "district": "Mumbai"
+  }
+},
+{
+  "_id": {
+    "$oid": "679df49c70eb957805993d96"
+  },
+  "name": "Nashik Zilla Parishad",
+  "scope": "local",
+  "isRural": true,
+  "place": {
+    "district": "Nashik",
+    "taluka": "Nashik",
+    "village": "Nashik Rural"
+  }
+},
+{
+  "_id": {
+    "$oid": "679df49c70eb957805993d97"
+  },
+  "name": "Surat Municipal Corporation",
+  "scope": "local",
+  "isRural": false,
+  "place": {
+    "city": "Surat",
+    "district": "Surat"
+  }
+},
+{
+  "_id": {
+    "$oid": "679df49c70eb957805993d98"
+  },
+  "name": "Surat District Panchayat",
+  "scope": "local",
+  "isRural": true,
+  "place": {
+    "district": "Surat",
+    "taluka": "Surat",
+    "village": "Surat Rural"
+  }
+},
+{
+  "_id": {
+    "$oid": "679df49c70eb957805993d99"
+  },
+  "name": "Olpad Taluka Panchayat",
+  "scope": "local",
+  "isRural": true,
+  "place": {
+    "district": "Surat",
+    "taluka": "Olpad",
+    "village": "Olpad"
+  }
+}]

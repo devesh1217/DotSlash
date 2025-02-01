@@ -1,0 +1,163 @@
+[
+  {
+    "_id": {
+      "$oid": "679df49c70eb957805993da0"
+    },
+    "name": "Passport Application",
+    "description": "Apply for a new passport or passport renewal",
+    "organization": {
+      "$oid": "679df49c70eb957805993d8f"
+    },
+    "documentCode": "PASS-NEW",
+    "requiredDocuments": [
+      {
+        "name": "Proof of Identity",
+        "documentCode": "POI"
+      },
+      {
+        "name": "Proof of Address",
+        "documentCode": "POA"
+      },
+      {
+        "name": "Birth Certificate",
+        "documentCode": "BIRTH"
+      }
+    ],
+    "formFields": [
+      {
+        "name": "fullName",
+        "label": "Full Name",
+        "type": "text",
+        "required": true,
+        "validations": {
+          "minLength": 3,
+          "maxLength": 100
+        }
+      },
+      {
+        "name": "dateOfBirth",
+        "label": "Date of Birth",
+        "type": "date",
+        "required": true
+      },
+      {
+        "name": "gender",
+        "label": "Gender",
+        "type": "select",
+        "required": true,
+        "options": ["Male", "Female", "Other"]
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "679df49c70eb957805993da1"
+    },
+    "name": "School Admission",
+    "description": "Apply for school admission",
+    "organization": {
+      "$oid": "679df49c70eb957805993d90"
+    },
+    "documentCode": "SCH-ADM",
+    "requiredDocuments": [
+      {
+        "name": "Previous School Marksheet",
+        "documentCode": "PREV-MARK"
+      },
+      {
+        "name": "Transfer Certificate",
+        "documentCode": "TC"
+      }
+    ],
+    "formFields": [
+      {
+        "name": "studentName",
+        "label": "Student Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "class",
+        "label": "Class",
+        "type": "select",
+        "required": true,
+        "options": ["1st", "2nd", "3rd", "4th", "5th"]
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "679df49c70eb957805993da2"
+    },
+    "name": "Birth Certificate",
+    "description": "Apply for birth certificate",
+    "organization": {
+      "$oid": "679df49c70eb957805993d93"
+    },
+    "documentCode": "BIRTH-CERT",
+    "requiredDocuments": [
+      {
+        "name": "Hospital Certificate",
+        "documentCode": "HOSP-CERT"
+      },
+      {
+        "name": "Parents' ID Proof",
+        "documentCode": "PAR-ID"
+      }
+    ],
+    "formFields": [
+      {
+        "name": "childName",
+        "label": "Child's Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "fatherName",
+        "label": "Father's Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "motherName",
+        "label": "Mother's Name",
+        "type": "text",
+        "required": true
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "679df49c70eb957805993da3"
+    },
+    "name": "Property Tax Payment",
+    "description": "Pay your property tax online",
+    "organization": {
+      "$oid": "679df49c70eb957805993d95"
+    },
+    "documentCode": "PROP-TAX",
+    "requiredDocuments": [
+      {
+        "name": "Property Ownership Document",
+        "documentCode": "PROP-DOC"
+      }
+    ],
+    "formFields": [
+      {
+        "name": "propertyId",
+        "label": "Property ID",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "amount",
+        "label": "Tax Amount",
+        "type": "number",
+        "required": true,
+        "validations": {
+          "min": 1
+        }
+      }
+    ]
+  }
+]

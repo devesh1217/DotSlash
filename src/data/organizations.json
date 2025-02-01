@@ -1,0 +1,87 @@
+[
+    {
+        "name": "Ministry of Home Affairs",
+        "scope": "central"
+    },
+    {
+        "name": "Ministry of Education",
+        "scope": "central"
+    },
+    {
+        "name": "Department of Health - Maharashtra",
+        "scope": "state",
+        "state": "Maharashtra"
+    },
+    {
+        "name": "Department of Education - Gujarat",
+        "scope": "state",
+        "state": "Gujarat"
+    },
+    {
+        "name": "Ahmedabad Municipal Corporation",
+        "scope": "local",
+        "isRural": false,
+        "place": {
+            "city": "Ahmedabad",
+            "district": "Ahmedabad"
+        }
+    },
+    {
+        "name": "Gandhinagar Gram Panchayat",
+        "scope": "local",
+        "isRural": true,
+        "place": {
+            "district": "Gandhinagar",
+            "taluka": "Gandhinagar",
+            "village": "Gandhinagar"
+        }
+    },
+    {
+        "name": "Mumbai Municipal Corporation",
+        "scope": "local",
+        "isRural": false,
+        "place": {
+            "city": "Mumbai",
+            "district": "Mumbai"
+        }
+    },
+    {
+        "name": "Nashik Zilla Parishad",
+        "scope": "local",
+        "isRural": true,
+        "place": {
+            "district": "Nashik",
+            "taluka": "Nashik",
+            "village": "Nashik Rural"
+        }
+    },
+    {
+        "name": "Surat Municipal Corporation",
+        "scope": "local",
+        "isRural": false,
+        "place": {
+            "city": "Surat",
+            "district": "Surat"
+        }
+    },
+    {
+        "name": "Surat District Panchayat",
+        "scope": "local",
+        "isRural": true,
+        "place": {
+            "district": "Surat",
+            "taluka": "Surat",
+            "village": "Surat Rural"
+        }
+    },
+    {
+        "name": "Olpad Taluka Panchayat",
+        "scope": "local",
+        "isRural": true,
+        "place": {
+            "district": "Surat",
+            "taluka": "Olpad",
+            "village": "Olpad"
+        }
+    }
+]
