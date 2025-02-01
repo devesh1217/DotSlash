@@ -6,6 +6,7 @@ import axios from 'axios';
 
 export async function POST(req) {
     try {
+        await connectDB();
         const formData = await req.formData();
         const tempToken = formData.get('tempToken');
         const aadharNo = formData.get('aadharNo');
@@ -61,7 +62,6 @@ export async function POST(req) {
         // }
 
         // Update user record
-        await connectDB();
         const user = await User.findById(decoded.userId);
         if (!user) {
             return NextResponse.json(
@@ -70,16 +70,33 @@ export async function POST(req) {
             );
         }
 
-        user.aadharNo = aadharNo;
-        user.isAadharVerified = true;
-        user.isFaceVerified = true;
-        user.faceMatchScore = verificationResult.similarity_score;
-        user.registrationStep = 3;
-        await user.save();
+        // Add Aadhaar to user's documents
+        const aadharDocument = {
+            name: 'Aadhaar Card',
+            documentCode: 'AAD001',
+            documentNumber: aadharNo,
+            authority: process.env.UIDAI_AUTHORITY_ID, // MongoDB ObjectId of UIDAI from organizations
+            docHash: verificationResult.document_hash || 'hash_placeholder'
+        };
+
+        // Update user document with Aadhaar details
+        await User.findByIdAndUpdate(decoded.userId, {
+            $set: {
+                aadharNo: aadharNo,
+                isAadharVerified: true,
+                isFaceVerified: true,
+                faceMatchScore: verificationResult.similarity_score,
+                registrationStep: 3
+            },
+            $push: {
+                documents: aadharDocument
+            }
+        });
 
         return NextResponse.json({
             message: 'Verification successful',
-            registrationComplete: true
+            registrationComplete: true,
+            documentAdded: aadharDocument
         });
 
     } catch (error) {
