@@ -4,7 +4,7 @@ import User from '@/models/user';
 import connectDB from '@/lib/db';
 import crypto from 'crypto';
 import { sendVerificationEmail } from '@/lib/mail';
-import jwt from 'jsonwebtoken';
+import {generateTempToken} from '@/lib/auth';
 
 export async function POST(req) {
     try {
@@ -58,17 +58,13 @@ export async function POST(req) {
         // Send verification email
         await sendVerificationEmail(email, verificationToken);
 
-        // Generate temporary token for continuing registration
-        const tempToken = jwt.sign(
-            { userId: user._id, step: 1 },
-            process.env.JWT_SECRET,
-            { expiresIn: '1h' }
-        );
+        // Generate temp token for face verification (first step)
+        const tempToken = generateTempToken(user._id, 1);
 
         return NextResponse.json({
-            message: 'Basic registration successful. Please verify your email and complete Aadhaar verification.',
+            message: 'User created successfully',
             tempToken,
-            nextStep: 'aadhaar-verification'
+            nextStep: 'face-verification'
         }, { status: 201 });
     } catch (error) {
         console.error('Signup error:', error);

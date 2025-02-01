@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
-const { verifyAuthToken } = require('@/lib/auth');
+import { verifyAuthToken } from '@/lib/auth';
 import User from '@/models/user';
 import connectDB from '@/lib/db';
+import axios from 'axios';
 
 export async function POST(req) {
     try {
@@ -9,10 +10,16 @@ export async function POST(req) {
         const tempToken = formData.get('tempToken');
         const aadharNo = formData.get('aadharNo');
         const aadharCardFile = formData.get('aadharCardFile');
+        const selfieImage = formData.get('selfieImage');
 
-        // Remove debug log
-        const decoded = verifyAuthToken(tempToken); // Changed to sync call
-        
+        if (!aadharCardFile || !selfieImage) {
+            return NextResponse.json(
+                { error: 'Both Aadhaar card and selfie are required' },
+                { status: 400 }
+            );
+        }
+
+        const decoded = verifyAuthToken(tempToken);
         if (!decoded || decoded.step !== 1) {
             return NextResponse.json(
                 { error: 'Invalid or expired session' },
@@ -20,18 +27,41 @@ export async function POST(req) {
             );
         }
 
-        await connectDB();
+        // Call government API for verification
+        const govApiFormData = new FormData();
+        govApiFormData.append('selfie', selfieImage);
+        govApiFormData.append('document', aadharCardFile);
 
-        // Check if Aadhaar is already registered
-        const existingAadhaar = await User.findOne({ aadharNo });
-        if (existingAadhaar) {
+        const verificationResponse = await axios.post(process.env.GOV_FACE_VERIFY_API, govApiFormData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+        console.log(verificationResponse)
+        if (!verificationResponse.data.match) {
+            throw new Error(verificationResponse.data.detail || 'Verification failed');
+        }
+
+        const verificationResult = verificationResponse.data;
+
+        // Verify the response
+        if (!verificationResult.match || verificationResult.similarity_score < 0.65) {
             return NextResponse.json(
-                { error: 'Aadhaar number already registered' },
+                { error: 'Face verification failed - No match found' },
                 { status: 400 }
             );
         }
 
-        // Find user from temp token
+        // Verify Aadhaar number matches
+        // if (verificationResult.aadhaar_number !== aadharNo) {
+        //     return NextResponse.json(
+        //         { error: 'Aadhaar number mismatch' },
+        //         { status: 400 }
+        //     );
+        // }
+
+        // Update user record
+        await connectDB();
         const user = await User.findById(decoded.userId);
         if (!user) {
             return NextResponse.json(
@@ -40,54 +70,23 @@ export async function POST(req) {
             );
         }
 
-        // TODO: Implement actual Aadhaar verification logic here
-        // This is a placeholder for the actual verification process
-        const isAadhaarValid = await verifyAadhaarWithGovAPI(aadharNo, aadharCardFile);
-        
-        if (!isAadhaarValid) {
-            return NextResponse.json(
-                { error: 'Aadhaar verification failed' },
-                { status: 400 }
-            );
-        }
-
-        // Handle file upload
-        let aadharCardUrl = null;
-        if (aadharCardFile) {
-            // TODO: Implement file upload to your storage service
-            // This is a placeholder
-            aadharCardUrl = await uploadFile(aadharCardFile);
-        }
-
-        // Update user with Aadhaar information
         user.aadharNo = aadharNo;
-        user.aadharCard = aadharCardUrl;
         user.isAadharVerified = true;
-        user.registrationStep = 3; // Mark registration as complete
+        user.isFaceVerified = true;
+        user.faceMatchScore = verificationResult.similarity_score;
+        user.registrationStep = 3;
         await user.save();
 
         return NextResponse.json({
-            message: 'Aadhaar verification successful',
+            message: 'Verification successful',
             registrationComplete: true
         });
+
     } catch (error) {
-        console.error('Aadhaar verification error:', error);
+        console.error('Verification error:', error);
         return NextResponse.json(
-            { error: 'Failed to verify Aadhaar' },
+            { error: 'Failed to verify: ' + error.message },
             { status: 500 }
         );
     }
-}
-
-// Placeholder function for actual Aadhaar verification
-async function verifyAadhaarWithGovAPI(aadharNo, aadharCardFile) {
-    // TODO: Implement actual verification logic
-    // This is just a placeholder
-    return true;
-}
-
-// Placeholder function for file upload
-async function uploadFile(file) {
-    // TODO: Implement actual file upload logic
-    return 'placeholder-url';
 }

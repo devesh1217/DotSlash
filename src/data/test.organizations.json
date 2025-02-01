@@ -1,0 +1,200 @@
+[{
+  "_id": {
+    "$oid": "679e319470eb957805993da9"
+  },
+  "name": "Ministry of Health and Family Welfare",
+  "scope": "central"
+},
+{
+  "_id": {
+    "$oid": "679e319470eb957805993daa"
+  },
+  "name": "Ministry of Education",
+  "scope": "central"
+},
+{
+  "_id": {
+    "$oid": "679e319470eb957805993dab"
+  },
+  "name": "Indian Railways",
+  "scope": "central"
+},
+{
+  "_id": {
+    "$oid": "679e319470eb957805993dac"
+  },
+  "name": "Tamil Nadu State Electricity Board",
+  "scope": "state",
+  "state": "Tamil Nadu"
+},
+{
+  "_id": {
+    "$oid": "679e319470eb957805993dad"
+  },
+  "name": "Maharashtra State Road Transport Corporation",
+  "scope": "state",
+  "state": "Maharashtra"
+},
+{
+  "_id": {
+    "$oid": "679e319470eb957805993dae"
+  },
+  "name": "West Bengal Pollution Control Board",
+  "scope": "state",
+  "state": "West Bengal"
+},
+{
+  "_id": {
+    "$oid": "679e319470eb957805993daf"
+  },
+  "name": "Karnataka State Tourism Development Corporation",
+  "scope": "state",
+  "state": "Karnataka"
+},
+{
+  "_id": {
+    "$oid": "679e319470eb957805993db0"
+  },
+  "name": "Delhi Jal Board",
+  "scope": "state",
+  "state": "Delhi"
+},
+{
+  "_id": {
+    "$oid": "679e319470eb957805993db1"
+  },
+  "name": "Lucknow Municipal Corporation",
+  "scope": "local",
+  "isRural": false,
+  "place": {
+    "city": "Lucknow",
+    "district": "Lucknow"
+  }
+},
+{
+  "_id": {
+    "$oid": "679e319470eb957805993db2"
+  },
+  "name": "Indore Municipal Corporation",
+  "scope": "local",
+  "isRural": false,
+  "place": {
+    "city": "Indore",
+    "district": "Indore"
+  }
+},
+{
+  "_id": {
+    "$oid": "679e319470eb957805993db3"
+  },
+  "name": "Pune Municipal Corporation",
+  "scope": "local",
+  "isRural": false,
+  "place": {
+    "city": "Pune",
+    "district": "Pune"
+  }
+},
+{
+  "_id": {
+    "$oid": "679e319470eb957805993db4"
+  },
+  "name": "Jaipur Nagar Nigam",
+  "scope": "local",
+  "isRural": false,
+  "place": {
+    "city": "Jaipur",
+    "district": "Jaipur"
+  }
+},
+{
+  "_id": {
+    "$oid": "679e319470eb957805993db5"
+  },
+  "name": "Amritsar Gram Panchayat",
+  "scope": "local",
+  "isRural": true,
+  "place": {
+    "district": "Amritsar",
+    "taluka": "Ajnala",
+    "village": "Rajasansi"
+  }
+},
+{
+  "_id": {
+    "$oid": "679e319470eb957805993db6"
+  },
+  "name": "Hassan Rural Development Authority",
+  "scope": "local",
+  "isRural": true,
+  "place": {
+    "district": "Hassan",
+    "taluka": "Sakleshpur",
+    "village": "Arehalli"
+  }
+},
+{
+  "_id": {
+    "$oid": "679e319470eb957805993db7"
+  },
+  "name": "Mysuru Rural Health Center",
+  "scope": "local",
+  "isRural": true,
+  "place": {
+    "district": "Mysuru",
+    "taluka": "Nanjangud",
+    "village": "Badanavalu"
+  }
+},
+{
+  "_id": {
+    "$oid": "679e319470eb957805993db8"
+  },
+  "name": "Patna Urban Development Authority",
+  "scope": "local",
+  "isRural": false,
+  "place": {
+    "city": "Patna",
+    "district": "Patna"
+  }
+},
+{
+  "_id": {
+    "$oid": "679e319470eb957805993db9"
+  },
+  "name": "Kerala Water Authority",
+  "scope": "state",
+  "state": "Kerala"
+},
+{
+  "_id": {
+    "$oid": "679e319470eb957805993dba"
+  },
+  "name": "Chandigarh Transport Undertaking",
+  "scope": "state",
+  "state": "Chandigarh"
+},
+{
+  "_id": {
+    "$oid": "679e319470eb957805993dbb"
+  },
+  "name": "Varanasi Nagar Nigam",
+  "scope": "local",
+  "isRural": false,
+  "place": {
+    "city": "Varanasi",
+    "district": "Varanasi"
+  }
+},
+{
+  "_id": {
+    "$oid": "679e319470eb957805993dbc"
+  },
+  "name": "Bhopal Municipal Corporation",
+  "scope": "local",
+  "isRural": false,
+  "place": {
+    "city": "Bhopal",
+    "district": "Bhopal"
+  }
+}]
