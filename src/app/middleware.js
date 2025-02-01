@@ -8,7 +8,8 @@ export function middleware(request) {
   const isPublicPath = path === '/login' || path === '/register' || path === '/'
 
   // Get the token from the cookies
-  const token = request.cookies.get('token')?.value || ''
+  const token = request.headers.get('Authorization')?.split('Bearer ')[1];
+  if(token) request.user = jwt.verify(token, process.env.JWT_SECRET);
 
   // Redirect logic
   if (isPublicPath && token) {
@@ -30,5 +31,6 @@ export const config = {
     '/register',
     '/dashboard/:path*',
     '/profile/:path*',
+    '/documents/:path*',
   ]
 }

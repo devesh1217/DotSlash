@@ -1,5 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 function Services() {
   const [sections, setSections] = useState({
@@ -99,15 +100,30 @@ function Services() {
   };
 
   const ServiceCard = ({ service }) => (
-    <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 border border-gov-light hover:border-gov-accent">
-      <h3 className="font-semibold text-xl text-gov-primary mb-2">{service.name}</h3>
-      <p className="text-sm text-gov-dark mb-4">{service.description}</p>
-      <div className="flex items-center justify-between">
-        <p className="text-xs text-gov-secondary font-medium">{service.organization.name}</p>
-        <button className="px-4 py-1 text-sm bg-gov-primary text-white rounded hover:bg-gov-dark transition-colors">
-          Apply
-        </button>
-      </div>
+    <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-lg transition-all duration-200 border border-gov-light hover:border-gov-primary group">
+        <div className="flex items-start justify-between mb-4">
+            <h3 className="font-semibold text-xl text-gov-primary group-hover:text-gov-dark transition-colors">
+                {service.name}
+            </h3>
+            <div className="bg-gov-light/30 px-2 py-1 rounded text-xs text-gov-secondary">
+                {service.documentCode}
+            </div>
+        </div>
+        <p className="text-sm text-gov-dark mb-4">{service.description}</p>
+        <div className="flex items-center justify-between">
+            <div className="flex items-center text-gov-secondary">
+                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+                <p className="text-xs font-medium">{service.organization.name}</p>
+            </div>
+            <Link 
+                href={`/services/apply/${service._id}`}
+                className="px-4 py-2 bg-gov-primary text-white rounded-md hover:bg-gov-dark transition-colors"
+            >
+                Apply Now
+            </Link>
+        </div>
     </div>
   );
 

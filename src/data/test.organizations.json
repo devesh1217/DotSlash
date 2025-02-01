@@ -1,91 +1,59 @@
 [{
   "_id": {
-    "$oid": "679e319470eb957805993da9"
+    "$oid": "679e387170eb957805993dca"
   },
-  "name": "Ministry of Health and Family Welfare",
+  "name": "Ministry of Home Affairs",
   "scope": "central"
 },
 {
   "_id": {
-    "$oid": "679e319470eb957805993daa"
+    "$oid": "679e387170eb957805993dcb"
   },
-  "name": "Ministry of Education",
+  "name": "Department of Revenue",
   "scope": "central"
 },
 {
   "_id": {
-    "$oid": "679e319470eb957805993dab"
+    "$oid": "679e387170eb957805993dcc"
   },
-  "name": "Indian Railways",
+  "name": "Ministry of External Affairs",
   "scope": "central"
 },
 {
   "_id": {
-    "$oid": "679e319470eb957805993dac"
+    "$oid": "679e387170eb957805993dcd"
   },
-  "name": "Tamil Nadu State Electricity Board",
-  "scope": "state",
-  "state": "Tamil Nadu"
-},
-{
-  "_id": {
-    "$oid": "679e319470eb957805993dad"
-  },
-  "name": "Maharashtra State Road Transport Corporation",
-  "scope": "state",
-  "state": "Maharashtra"
-},
-{
-  "_id": {
-    "$oid": "679e319470eb957805993dae"
-  },
-  "name": "West Bengal Pollution Control Board",
-  "scope": "state",
-  "state": "West Bengal"
-},
-{
-  "_id": {
-    "$oid": "679e319470eb957805993daf"
-  },
-  "name": "Karnataka State Tourism Development Corporation",
+  "name": "Karnataka Revenue Department",
   "scope": "state",
   "state": "Karnataka"
 },
 {
   "_id": {
-    "$oid": "679e319470eb957805993db0"
+    "$oid": "679e387170eb957805993dce"
   },
-  "name": "Delhi Jal Board",
+  "name": "Maharashtra Transport Department",
   "scope": "state",
-  "state": "Delhi"
+  "state": "Maharashtra"
 },
 {
   "_id": {
-    "$oid": "679e319470eb957805993db1"
+    "$oid": "679e387170eb957805993dcf"
   },
-  "name": "Lucknow Municipal Corporation",
-  "scope": "local",
-  "isRural": false,
-  "place": {
-    "city": "Lucknow",
-    "district": "Lucknow"
-  }
+  "name": "Gujarat Education Department",
+  "scope": "state",
+  "state": "Gujarat"
 },
 {
   "_id": {
-    "$oid": "679e319470eb957805993db2"
+    "$oid": "679e387170eb957805993dd0"
   },
-  "name": "Indore Municipal Corporation",
-  "scope": "local",
-  "isRural": false,
-  "place": {
-    "city": "Indore",
-    "district": "Indore"
-  }
+  "name": "Kerala Health Services",
+  "scope": "state",
+  "state": "Kerala"
 },
 {
   "_id": {
-    "$oid": "679e319470eb957805993db3"
+    "$oid": "679e387170eb957805993dd1"
   },
   "name": "Pune Municipal Corporation",
   "scope": "local",
@@ -97,104 +65,126 @@
 },
 {
   "_id": {
-    "$oid": "679e319470eb957805993db4"
+    "$oid": "679e387170eb957805993dd2"
   },
-  "name": "Jaipur Nagar Nigam",
+  "name": "Bengaluru City Corporation",
   "scope": "local",
   "isRural": false,
   "place": {
-    "city": "Jaipur",
-    "district": "Jaipur"
+    "city": "Bengaluru",
+    "district": "Bengaluru Urban"
   }
 },
 {
   "_id": {
-    "$oid": "679e319470eb957805993db5"
+    "$oid": "679e387170eb957805993dd3"
   },
-  "name": "Amritsar Gram Panchayat",
-  "scope": "local",
-  "isRural": true,
-  "place": {
-    "district": "Amritsar",
-    "taluka": "Ajnala",
-    "village": "Rajasansi"
-  }
-},
-{
-  "_id": {
-    "$oid": "679e319470eb957805993db6"
-  },
-  "name": "Hassan Rural Development Authority",
-  "scope": "local",
-  "isRural": true,
-  "place": {
-    "district": "Hassan",
-    "taluka": "Sakleshpur",
-    "village": "Arehalli"
-  }
-},
-{
-  "_id": {
-    "$oid": "679e319470eb957805993db7"
-  },
-  "name": "Mysuru Rural Health Center",
+  "name": "Mysuru Zilla Panchayat",
   "scope": "local",
   "isRural": true,
   "place": {
     "district": "Mysuru",
-    "taluka": "Nanjangud",
-    "village": "Badanavalu"
+    "taluka": "Mysuru",
+    "village": "Mysuru Rural"
   }
 },
 {
   "_id": {
-    "$oid": "679e319470eb957805993db8"
+    "$oid": "679e387170eb957805993dd4"
   },
-  "name": "Patna Urban Development Authority",
-  "scope": "local",
-  "isRural": false,
-  "place": {
-    "city": "Patna",
-    "district": "Patna"
-  }
-},
-{
-  "_id": {
-    "$oid": "679e319470eb957805993db9"
-  },
-  "name": "Kerala Water Authority",
+  "name": "Tamil Nadu Public Works Department",
   "scope": "state",
-  "state": "Kerala"
+  "state": "Tamil Nadu"
 },
 {
   "_id": {
-    "$oid": "679e319470eb957805993dba"
+    "$oid": "679e387170eb957805993dd5"
   },
-  "name": "Chandigarh Transport Undertaking",
+  "name": "Rajasthan Education Board",
   "scope": "state",
-  "state": "Chandigarh"
+  "state": "Rajasthan"
 },
 {
   "_id": {
-    "$oid": "679e319470eb957805993dbb"
+    "$oid": "679e387170eb957805993dd6"
   },
-  "name": "Varanasi Nagar Nigam",
+  "name": "Ahmadabad Municipal Corporation",
   "scope": "local",
   "isRural": false,
   "place": {
-    "city": "Varanasi",
-    "district": "Varanasi"
+    "city": "Ahmadabad",
+    "district": "Ahmadabad"
   }
 },
 {
   "_id": {
-    "$oid": "679e319470eb957805993dbc"
+    "$oid": "679e387170eb957805993dd7"
   },
-  "name": "Bhopal Municipal Corporation",
+  "name": "Nashik Gram Panchayat",
+  "scope": "local",
+  "isRural": true,
+  "place": {
+    "district": "Nashik",
+    "taluka": "Nashik",
+    "village": "Nashik Rural"
+  }
+},
+{
+  "_id": {
+    "$oid": "679e387170eb957805993dd8"
+  },
+  "name": "Madurai Corporation",
   "scope": "local",
   "isRural": false,
   "place": {
-    "city": "Bhopal",
-    "district": "Bhopal"
+    "city": "Madurai",
+    "district": "Madurai"
+  }
+},
+{
+  "_id": {
+    "$oid": "679e387170eb957805993dd9"
+  },
+  "name": "Ministry of Railways",
+  "scope": "central"
+},
+{
+  "_id": {
+    "$oid": "679e387170eb957805993dda"
+  },
+  "name": "Uttar Pradesh Revenue Department",
+  "scope": "state",
+  "state": "Uttar Pradesh"
+},
+{
+  "_id": {
+    "$oid": "679e387170eb957805993ddb"
+  },
+  "name": "Coimbatore Rural Development Office",
+  "scope": "local",
+  "isRural": true,
+  "place": {
+    "district": "Coimbatore",
+    "taluka": "Sulur",
+    "village": "Kalappatti"
+  }
+},
+{
+  "_id": {
+    "$oid": "679e387170eb957805993ddc"
+  },
+  "name": "Ministry of Education",
+  "scope": "central"
+},
+{
+  "_id": {
+    "$oid": "679e387170eb957805993ddd"
+  },
+  "name": "Kolkata Municipal Corporation",
+  "scope": "local",
+  "isRural": false,
+  "place": {
+    "city": "Kolkata",
+    "district": "Kolkata"
   }
 }]
