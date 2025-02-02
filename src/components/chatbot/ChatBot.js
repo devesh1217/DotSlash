@@ -164,7 +164,7 @@ const Chatbot = () => {
                             <button 
                                 type="submit"
                                 disabled={isLoading || !input.trim()}
-                                className="px-6 py-3 bg-gov-accent text-gov-dark rounded-xl hover:bg-gov-hover transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gov-accent/50"
+                                className="px-6 py-3 bg-gov-dark text-gov-light rounded-xl hover:bg-gov-hover transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gov-accent/50"
                             >
                                 {isLoading ? 'Sending...' : 'Send'}
                             </button>

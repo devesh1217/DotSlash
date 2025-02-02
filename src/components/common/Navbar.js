@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -12,9 +13,7 @@ export default function Navbar() {
 
     const navLinks = [
         { name: 'Home', href: '/' },
-        { name: 'Citizen Services', href: '/services' },
         { name: 'Documents', href: '/documents' },
-        { name: 'Schemes', href: '/schemes' },
         { name: 'Contact', href: '/contact' },
     ];
 
@@ -59,8 +58,8 @@ export default function Navbar() {
                 <div className="flex items-center justify-between h-16">
                     <div className="flex-shrink-0">
                         <Link href="/" className="text-gov-light font-bold text-xl flex items-center gap-2">
-                            <span className="text-gov-secondary">॥</span>
-                            e-Governance Portal
+                            <Image src="/logo.png" alt="Gov Logo" width={40} height={40} />
+                            संयुक्तPortal
                         </Link>
                     </div>
                     

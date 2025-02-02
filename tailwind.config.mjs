@@ -29,6 +29,19 @@ export default {
       },
       boxShadow: {
         'gov': '0 2px 4px rgba(0, 0, 0, 0.05)',
+        'gov-md': '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+        'gov-lg': '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+      },
+      borderRadius: {
+        'gov': '0.375rem',
+      },
+      fontSize: {
+        'gov-xs': '0.75rem',
+        'gov-sm': '0.875rem',
+        'gov-base': '1rem',
+        'gov-lg': '1.125rem',
+        'gov-xl': '1.25rem',
+        'gov-2xl': '1.5rem',
       }
     },
   },

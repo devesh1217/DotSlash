@@ -8,7 +8,7 @@ export default function Footer() {
                     {/* Brand Section */}
                     <div className="col-span-1 md:col-span-2">
                         <Link href="/" className="text-gov-light font-bold text-xl">
-                            e-Governance Portal
+                            संयुक्तPortal
                         </Link>
                         <p className="mt-4 text-gov-accent/80 max-w-md">
                             Empowering citizens through digital governance. Access government services easily and securely.
