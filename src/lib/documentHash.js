@@ -1,6 +1,7 @@
 import crypto from 'crypto';
 
 export const generateDocumentHash = (documentData) => {
+    console.log(documentData, JSON.stringify(documentData))
     const hash = crypto.createHash('sha256');
     hash.update(JSON.stringify(documentData));
     return hash.digest('hex');

@@ -83,3 +83,26 @@ export const sendApplicationStatusEmail = async (userEmail, userName, applicatio
         throw new Error('Failed to send application status email');
     }
 };
+
+export const sendAadhaarVerificationEmail = async (email, userName, aadharNo) => {
+    try {
+        const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: email,
+            subject: 'Aadhaar Verification Successful',
+            html: `
+                <h1>Aadhaar Verification Complete</h1>
+                <p>Dear ${userName},</p>
+                <p>Your Aadhaar verification has been completed successfully.</p>
+                <p>Verified Aadhaar Number: XXXX-XXXX-${aadharNo.slice(-4)}</p>
+                <p>You can now proceed with using our services that require Aadhaar verification.</p>
+                <p>If you didn't request this verification, please contact our support team immediately.</p>
+            `
+        };
+
+        await transporter.sendMail(mailOptions);
+    } catch (error) {
+        console.error('Error sending Aadhaar verification email:', error);
+        throw new Error('Failed to send Aadhaar verification email');
+    }
+};

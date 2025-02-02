@@ -3,6 +3,8 @@ import { verifyAadharToken } from '@/lib/auth';
 import User from '@/models/user';
 import connectDB from '@/lib/db';
 import axios from 'axios';
+import { generateDocumentHash } from '@/lib/documentHash';
+import { sendAadhaarVerificationEmail } from '@/lib/mail';
 
 export async function POST(req) {
     try {
@@ -70,14 +72,21 @@ export async function POST(req) {
                 { status: 404 }
             );
         }
-
+        const docData = {
+            userId: user._id,
+            name: 'Aadhaar Card',
+            documentCode: 'AAD001',
+            documentNumber: aadharNo,
+            approvedBy: process.env.UIDAI_AUTHORITY_ID, // MongoDB ObjectId of UIDAI from organizations
+            approvedAt: new Date(),
+        };
         // Add Aadhaar to user's documents
         const aadharDocument = {
             name: 'Aadhaar Card',
             documentCode: 'AAD001',
             documentNumber: aadharNo,
             authority: process.env.UIDAI_AUTHORITY_ID, // MongoDB ObjectId of UIDAI from organizations
-            docHash: verificationResult.document_hash || 'hash_placeholder'
+            docHash: generateDocumentHash(docData) || 'hash_placeholder',
         };
 
         // Update user document with Aadhaar details
@@ -93,6 +102,9 @@ export async function POST(req) {
                 documents: aadharDocument
             }
         });
+
+        // Send verification success email
+        await sendAadhaarVerificationEmail(user.email, user.name, aadharNo);
 
         return NextResponse.json({
             message: 'Verification successful',
