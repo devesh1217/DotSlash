@@ -35,13 +35,13 @@ function Services() {
     try {
       const response = await fetch(`/api/services/get/${scope}${queryParams ? `?${queryParams}` : ''}`);
       const data = await response.json();
-      
+
       console.log(`${scope} services response:`, data);
 
       if (data.error) {
         throw new Error(data.error);
       }
-      
+
       setSections(prev => ({
         ...prev,
         [scope]: {
@@ -55,8 +55,8 @@ function Services() {
       console.error(`Error fetching ${scope} services:`, error);
       setSections(prev => ({
         ...prev,
-        [scope]: { 
-          ...prev[scope], 
+        [scope]: {
+          ...prev[scope],
           loading: false,
           error: error.message
         }
@@ -91,9 +91,9 @@ function Services() {
     }));
 
     const params = {
-      ...(type === 'state' ? { state: value } : { 
+      ...(type === 'state' ? { state: value } : {
         state: sections.local.selectedState,
-        district: value 
+        district: value
       })
     };
     fetchServices('local', params);
@@ -101,29 +101,29 @@ function Services() {
 
   const ServiceCard = ({ service }) => (
     <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-lg transition-all duration-200 border border-gov-light hover:border-gov-primary group">
-        <div className="flex items-start justify-between mb-4">
-            <h3 className="font-semibold text-xl text-gov-primary group-hover:text-gov-dark transition-colors">
-                {service.name}
-            </h3>
-            <div className="bg-gov-light/30 px-2 py-1 rounded text-xs text-gov-secondary">
-                {service.documentCode}
-            </div>
+      <div className="flex items-start justify-between mb-4">
+        <h3 className="font-semibold text-xl text-gov-primary group-hover:text-gov-dark transition-colors">
+          {service.name}
+        </h3>
+        <div className="bg-gov-light/30 px-2 py-1 rounded text-xs text-gov-secondary">
+          {service.documentCode}
         </div>
-        <p className="text-sm text-gov-dark mb-4">{service.description}</p>
-        <div className="flex items-center justify-between">
-            <div className="flex items-center text-gov-secondary">
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-                <p className="text-xs font-medium">{service.organization.name}</p>
-            </div>
-            <Link 
-                href={`/services/apply/${service._id}`}
-                className="px-4 py-2 bg-gov-primary text-white rounded-md hover:bg-gov-dark transition-colors"
-            >
-                Apply Now
-            </Link>
+      </div>
+      <p className="text-sm text-gov-dark mb-4">{service.description}</p>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center text-gov-secondary">
+          <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+          </svg>
+          <p className="text-xs font-medium">{service.organization.name}</p>
         </div>
+        <Link
+          href={`/services/apply/${service._id}`}
+          className="px-4 py-2 bg-gov-primary text-white rounded-md hover:bg-gov-dark transition-colors"
+        >
+          Apply Now
+        </Link>
+      </div>
     </div>
   );
 
@@ -156,19 +156,19 @@ function Services() {
         <p>Loading services...</p>
       </div>
     );
-    
+
     if (error) return (
       <div className="text-center py-8 text-gov-error">
         <p>Error: {error}</p>
       </div>
     );
-    
+
     if (!services?.length) return (
       <div className="text-center py-8 text-gov-secondary bg-gov-light/20 rounded-lg">
         <p>No services available for the selected criteria</p>
       </div>
     );
-    
+
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {services.map(service => (
@@ -183,7 +183,7 @@ function Services() {
       {/* Central Services Section */}
       <section>
         <SectionHeader title="Central Government Services" />
-        <SectionContent 
+        <SectionContent
           scope="central"
           services={sections.central.services}
           loading={sections.central.loading}
@@ -204,7 +204,7 @@ function Services() {
             placeholder="Select State"
           />
         </SectionHeader>
-        <SectionContent 
+        <SectionContent
           scope="state"
           services={sections.state.services}
           loading={sections.state.loading}
@@ -229,25 +229,25 @@ function Services() {
               value={sections.local.selectedDistrict}
               onChange={(e) => handleLocalServiceLocationChange('district', e.target.value)}
               options={
-                sections.local.selectedState === 'Gujarat' 
+                sections.local.selectedState === 'Gujarat'
                   ? [
-                      { value: "Ahmedabad", label: "Ahmedabad" },
-                      { value: "Surat", label: "Surat" },
-                      { value: "Gandhinagar", label: "Gandhinagar" }
-                    ]
+                    { value: "Ahmedabad", label: "Ahmedabad" },
+                    { value: "Surat", label: "Surat" },
+                    { value: "Gandhinagar", label: "Gandhinagar" }
+                  ]
                   : sections.local.selectedState === 'Maharashtra'
-                  ? [
+                    ? [
                       { value: "Mumbai", label: "Mumbai" },
                       { value: "Nashik", label: "Nashik" }
                     ]
-                  : []
+                    : []
               }
               placeholder="Select District"
               disabled={!sections.local.selectedState}
             />
           </div>
         </SectionHeader>
-        <SectionContent 
+        <SectionContent
           scope="local"
           services={sections.local.services}
           loading={sections.local.loading}
