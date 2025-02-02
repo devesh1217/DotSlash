@@ -456,5 +456,6 @@
     "dir": "auto",
     "lang": "en-IN",
     "name": "संयुक्तPortal e-Governance",
-    "short_name": "संयुक्तPortal"
+    "short_name": "संयुक्तPortal",
+    "start_url": "/"
 }
