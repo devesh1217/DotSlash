@@ -1,0 +1,305 @@
+[{
+  "_id": {
+    "$oid": "679e3ec970eb957805993df8"
+  },
+  "name": "Address Proof Certificate",
+  "description": "Get official address proof certificate based on Aadhaar",
+  "organization": {
+    "$oid": "679e387170eb957805993dca"
+  },
+  "requiredDocuments": [
+    {
+      "name": "Aadhaar Card",
+      "documentCode": "AAD001"
+    }
+  ],
+  "formFields": [
+    {
+      "name": "current_address",
+      "label": "Current Address",
+      "type": "text",
+      "required": true
+    }
+  ],
+  "documentCode": "ADR002"
+},
+{
+  "_id": {
+    "$oid": "679e3ec970eb957805993df9"
+  },
+  "name": "Income Certificate",
+  "description": "Certificate proving annual income",
+  "organization": {
+    "$oid": "679e387170eb957805993dcb"
+  },
+  "requiredDocuments": [
+    {
+      "name": "Aadhaar Card",
+      "documentCode": "AAD001"
+    },
+    {
+      "name": "Address Proof",
+      "documentCode": "ADR002"
+    }
+  ],
+  "formFields": [
+    {
+      "name": "annual_income",
+      "label": "Annual Income",
+      "type": "number",
+      "required": true
+    }
+  ],
+  "documentCode": "INC003"
+},
+{
+  "_id": {
+    "$oid": "679e3ec970eb957805993dfa"
+  },
+  "name": "Birth Certificate",
+  "description": "Official birth certificate",
+  "organization": {
+    "$oid": "679e387170eb957805993dd1"
+  },
+  "requiredDocuments": [
+    {
+      "name": "Aadhaar Card",
+      "documentCode": "AAD001"
+    }
+  ],
+  "formFields": [
+    {
+      "name": "date_of_birth",
+      "label": "Date of Birth",
+      "type": "date",
+      "required": true
+    }
+  ],
+  "documentCode": "BRT004"
+},
+{
+  "_id": {
+    "$oid": "679e3ec970eb957805993dfb"
+  },
+  "name": "Domicile Certificate",
+  "description": "State residency proof",
+  "organization": {
+    "$oid": "679e387170eb957805993dcd"
+  },
+  "requiredDocuments": [
+    {
+      "name": "Aadhaar Card",
+      "documentCode": "AAD001"
+    },
+    {
+      "name": "Address Proof",
+      "documentCode": "ADR002"
+    }
+  ],
+  "formFields": [
+    {
+      "name": "residence_duration",
+      "label": "Years of Residence",
+      "type": "number",
+      "required": true
+    }
+  ],
+  "documentCode": "DOM005"
+},
+{
+  "_id": {
+    "$oid": "679e3ec970eb957805993dfc"
+  },
+  "name": "Driving License",
+  "description": "Vehicle driving license",
+  "organization": {
+    "$oid": "679e387170eb957805993dce"
+  },
+  "requiredDocuments": [
+    {
+      "name": "Aadhaar Card",
+      "documentCode": "AAD001"
+    },
+    {
+      "name": "Address Proof",
+      "documentCode": "ADR002"
+    },
+    {
+      "name": "Birth Certificate",
+      "documentCode": "BRT004"
+    }
+  ],
+  "formFields": [
+    {
+      "name": "vehicle_type",
+      "label": "Vehicle Type",
+      "type": "select",
+      "options": [
+        "Two Wheeler",
+        "Four Wheeler",
+        "Commercial"
+      ],
+      "required": true
+    }
+  ],
+  "documentCode": "DRL006"
+},
+{
+  "_id": {
+    "$oid": "679e3ec970eb957805993dfd"
+  },
+  "name": "Ration Card",
+  "description": "Public distribution system card",
+  "organization": {
+    "$oid": "679e387170eb957805993dda"
+  },
+  "requiredDocuments": [
+    {
+      "name": "Aadhaar Card",
+      "documentCode": "AAD001"
+    },
+    {
+      "name": "Address Proof",
+      "documentCode": "ADR002"
+    },
+    {
+      "name": "Income Certificate",
+      "documentCode": "INC003"
+    }
+  ],
+  "formFields": [
+    {
+      "name": "family_members",
+      "label": "Number of Family Members",
+      "type": "number",
+      "required": true
+    }
+  ],
+  "documentCode": "RAT007"
+},
+{
+  "_id": {
+    "$oid": "679e3ec970eb957805993dfe"
+  },
+  "name": "Caste Certificate",
+  "description": "Official caste proof document",
+  "organization": {
+    "$oid": "679e387170eb957805993dcd"
+  },
+  "requiredDocuments": [
+    {
+      "name": "Aadhaar Card",
+      "documentCode": "AAD001"
+    },
+    {
+      "name": "Birth Certificate",
+      "documentCode": "BRT004"
+    }
+  ],
+  "formFields": [
+    {
+      "name": "caste_category",
+      "label": "Caste Category",
+      "type": "select",
+      "options": [
+        "SC",
+        "ST",
+        "OBC",
+        "General"
+      ],
+      "required": true
+    }
+  ],
+  "documentCode": "CST008"
+},
+{
+  "_id": {
+    "$oid": "679e3ec970eb957805993dff"
+  },
+  "name": "Pan Card",
+  "description": "Permanent Account Number Card",
+  "organization": {
+    "$oid": "679e387170eb957805993dcb"
+  },
+  "requiredDocuments": [
+    {
+      "name": "Aadhaar Card",
+      "documentCode": "AAD001"
+    },
+    {
+      "name": "Address Proof",
+      "documentCode": "ADR002"
+    }
+  ],
+  "formFields": [
+    {
+      "name": "date_of_birth",
+      "label": "Date of Birth",
+      "type": "date",
+      "required": true
+    }
+  ],
+  "documentCode": "PAN009"
+},
+{
+  "_id": {
+    "$oid": "679e3ec970eb957805993e00"
+  },
+  "name": "Voter ID Card",
+  "description": "Electoral photo identity card",
+  "organization": {
+    "$oid": "679e387170eb957805993dca"
+  },
+  "requiredDocuments": [
+    {
+      "name": "Aadhaar Card",
+      "documentCode": "AAD001"
+    },
+    {
+      "name": "Address Proof",
+      "documentCode": "ADR002"
+    }
+  ],
+  "formFields": [
+    {
+      "name": "assembly_constituency",
+      "label": "Assembly Constituency",
+      "type": "text",
+      "required": true
+    }
+  ],
+  "documentCode": "VOT010"
+},
+{
+  "_id": {
+    "$oid": "679e3ec970eb957805993e01"
+  },
+  "name": "Marriage Certificate",
+  "description": "Legal proof of marriage",
+  "organization": {
+    "$oid": "679e387170eb957805993dd1"
+  },
+  "requiredDocuments": [
+    {
+      "name": "Aadhaar Card",
+      "documentCode": "AAD001"
+    },
+    {
+      "name": "Address Proof",
+      "documentCode": "ADR002"
+    },
+    {
+      "name": "Birth Certificate",
+      "documentCode": "BRT004"
+    }
+  ],
+  "formFields": [
+    {
+      "name": "marriage_date",
+      "label": "Date of Marriage",
+      "type": "date",
+      "required": true
+    }
+  ],
+  "documentCode": "MAR011"
+}]
