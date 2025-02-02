@@ -6,7 +6,7 @@ import Organization from '@/models/organization';
 export async function GET(request, context) {
     try {
         await connectDB();
-        const scope = await context.params.scope;
+        const { scope } = context.params; // Corrected usage
         const { searchParams } = new URL(request.url);
         const state = searchParams.get('state');
         const district = searchParams.get('district');
@@ -21,8 +21,8 @@ export async function GET(request, context) {
         }
 
         // First, find organizations matching the criteria
-        let orgQuery = { scope: scope };
-        
+        let orgQuery = { scope };
+
         if (scope === 'state' && state) {
             orgQuery.state = state;
         } else if (scope === 'local') {
