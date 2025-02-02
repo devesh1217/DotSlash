@@ -94,6 +94,23 @@ function ServiceApplication({ serviceId }) {
         const isAvailable = documentStatus[doc.documentCode];
         const userDoc = userDocuments.find(d => d.documentCode === doc.documentCode);
 
+        const handleGetDocument = () => {
+            // Find the service that provides this document
+            fetch(`/api/services/document/${doc.documentCode}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.serviceId) {
+                        router.push(`/services/apply/${data.serviceId}`);
+                    } else {
+                        alert('Service not found for this document');
+                    }
+                })
+                .catch(err => {
+                    console.error('Error fetching document service:', err);
+                    alert('Error finding the service for this document');
+                });
+        };
+
         return (
             <div className={`p-4 rounded-lg border ${
                 isAvailable ? 'border-gov-success bg-green-50' : 'border-gov-error bg-red-50'
@@ -115,8 +132,17 @@ function ServiceApplication({ serviceId }) {
                     </div>
                 </div>
                 {!isAvailable && (
-                    <div className="mt-2 text-xs text-gov-error">
-                        This document is required. Please obtain it before proceeding.
+                    <div className="mt-2 flex flex-col gap-2">
+                        <div className="text-xs text-gov-error">
+                            This document is required. Please obtain it before proceeding.
+                        </div>
+                        <button
+                            type="button"
+                            onClick={handleGetDocument}
+                            className="text-sm px-3 py-1.5 bg-gov-primary text-white rounded-md hover:bg-gov-dark transition-colors self-start"
+                        >
+                            Get Document
+                        </button>
                     </div>
                 )}
             </div>
