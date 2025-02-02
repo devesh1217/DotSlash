@@ -6,11 +6,16 @@ const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 export async function POST(req) {
     const { prompt } = await req.json();
+    const modifiedPrompt = `${prompt} answer in small bullet points only!`;
 
     try {
-        const result = await model.generateContent(prompt);
+        const result = await model.generateContent(modifiedPrompt);
         const botResponse = result.response.text(); // Corrected response handling
-        return NextResponse.json({ reply: botResponse });
+
+        // Format the response as Markdown
+        const markdownResponse = `## Response\n\n${botResponse}`;
+
+        return NextResponse.json({ reply: markdownResponse });
     } catch (error) {
         console.error("Chat API Error:", error);
         return NextResponse.json({ error: 'Failed to fetch response from AI model' }, { status: 500 });

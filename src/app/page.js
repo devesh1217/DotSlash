@@ -6,12 +6,21 @@ import { useEffect, useState } from 'react';
 
 export default function Home() {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
+  const [announcements, setAnnouncements] = useState([]);
 
   useEffect(() => {
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       setDeferredPrompt(e);
     });
+
+    const fetchAnnouncements = async () => {
+      const response = await fetch('/api/announcements');
+      const data = await response.json();
+      setAnnouncements(data.announcements);
+    };
+
+    fetchAnnouncements();
   }, []);
 
   const handleInstallClick = async () => {
@@ -42,6 +51,15 @@ export default function Home() {
                 Install App
               </button>
             </div>
+          </div>
+        )}
+        {announcements.length > 0 && (
+          <div className="announcement-bar bg-yellow-300 p-2 mb-4">
+            <marquee>
+              {announcements.map((announcement) => (
+                <span key={announcement._id} className="mx-4">{announcement.message}</span>
+              ))}
+            </marquee>
           </div>
         )}
         <Services />
