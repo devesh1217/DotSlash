@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { redirect } from 'next/navigation';
 
 export default function Login() {
     const router = useRouter();
@@ -31,7 +32,7 @@ export default function Login() {
             // Save token and user data
             localStorage.setItem('token', data.token);
             localStorage.setItem('user', JSON.stringify(data.user));
-            router.push('/dashboard');
+            location.href = '/'; // Redirect to home page
         } catch (err) {
             setError(err.message);
         } finally {
@@ -92,7 +93,7 @@ export default function Login() {
                         </div>
                         <div className="flex items-center justify-between mt-2">
                             <div className="text-sm">
-                                <Link href="/auth/forgot-password" className="text-gov-link hover:text-gov-link-hover font-medium">
+                                <Link href="/auth/forgot-password" className="text-gov-link hover:text-gov-link-hover font-medium text-gov-text">
                                     Forgot your password?
                                 </Link>
                             </div>

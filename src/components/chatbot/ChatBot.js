@@ -102,12 +102,12 @@ const Chatbot = () => {
             </button>
 
             <div 
-                className={`absolute bottom-24 right-4 w-[400px] transition-all duration-300 transform ${
+                className={`absolute bottom-24 right-4 w-[350px] md:w-[400px] transition-all duration-300 transform ${
                     isOpen ? 'translate-y-0 opacity-100 pointer-events-auto' : 'translate-y-full opacity-0 pointer-events-none'
                 }`}
             >
-                <div className="bg-gov-dark rounded-xl shadow-2xl flex flex-col h-[600px] border border-gov-border/30 backdrop-blur-sm">
-                    <div className="p-4 border-b border-gov-border/30 bg-gov-primary rounded-t-xl">
+                <div className="bg-gov-dark rounded-xl shadow-2xl flex flex-col h-[600px] backdrop-blur-sm">
+                    <div className="p-4 bg-gov-primary rounded-t-xl">
                         <h3 className="text-white font-semibold text-lg flex items-center gap-2">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
@@ -125,8 +125,8 @@ const Chatbot = () => {
                                 >
                                     <div className={`max-w-[85%] group ${
                                         msg.sender === 'user' 
-                                            ? 'bg-gov-primary hover:bg-gov-primary-light' 
-                                            : 'bg-gov-secondary hover:bg-gov-secondary/90'
+                                            ? 'bg-red-800 hover:bg-zinc-600/90' 
+                                            : 'bg-zinc-500 hover:bg-zinc-500/90'
                                     } p-4 rounded-2xl shadow-md transition-all duration-200`}>
                                         <ReactMarkdown className="prose prose-invert max-w-none text-sm">
                                             {msg.text}
@@ -151,20 +151,20 @@ const Chatbot = () => {
                         </div>
                     </div>
 
-                    <form onSubmit={handleSendMessage} className="p-4 border-t border-gov-border/30 bg-gov-primary rounded-b-xl">
-                        <div className="flex space-x-2">
+                    <form onSubmit={handleSendMessage} className="p-4 bg-gov-primary rounded-b-xl">
+                        <div className="space-x-2 flex">
                             <input
                                 type="text"
                                 value={input}
                                 onChange={(e) => setInput(e.target.value)}
                                 placeholder="Type a message..."
                                 disabled={isLoading}
-                                className="flex-1 p-3 bg-gov-input/90 border border-gov-border/30 rounded-xl text-gov-text focus:outline-none focus:ring-2 focus:ring-gov-accent/50 focus:border-transparent disabled:opacity-50 placeholder-gov-text/50 transition-all duration-200"
+                                className="w-full p-3 bg-gov-input/90 rounded-xl text-gov-text focus:outline-none focus:ring-2 focus:ring-gov-accent/50 focus:border-transparent disabled:opacity-50 placeholder-gov-text/50 transition-all duration-200"
                             />
                             <button 
                                 type="submit"
                                 disabled={isLoading || !input.trim()}
-                                className="px-6 py-3 bg-gov-dark text-gov-light rounded-xl hover:bg-gov-hover transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gov-accent/50"
+                                className="w-fit px-2 md:px-3 py-3 bg-gov-dark text-gov-light rounded-xl hover:bg-gov-accent/65 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gov-accent/50"
                             >
                                 {isLoading ? 'Sending...' : 'Send'}
                             </button>
